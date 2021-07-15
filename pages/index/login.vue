@@ -73,13 +73,14 @@
   .logo-text {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     margin-top: 101px;
   }
   .mid-logo {
     width: 59px; height: 59px;
-    margin-left: 63px;
   }
   .mid-text {
+    /* 1 */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -145,7 +146,6 @@
     color: #FFFFFF;
   }
   span {
-    white-space: pre;
     color: #037cc2;
   }
 </style>
