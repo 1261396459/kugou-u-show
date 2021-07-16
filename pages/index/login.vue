@@ -15,7 +15,7 @@
         </view>
       </view>
       <view class="event">
-        <button class="login-btn" style="background-color: #0c96e6;"><text>登录</text></button>
+        <button class="login-btn" style="background-color: #0c96e6;" @click="login"><text>登录</text></button>
         <button class="login-btn" style="background-color: #0ce6c5;"><text>注册</text></button>
       </view>
       <view class="login-way-text"><text>其他登录方式</text></view>
@@ -46,7 +46,11 @@
       }
     },
     methods: {
-      
+      login() {
+        uni.navigateTo({
+          url: 'index'
+        })
+      }
     }
   }
 </script>
