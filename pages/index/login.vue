@@ -10,8 +10,8 @@
       <view class="logo-text">
         <image class="mid-logo" src="../../static/logo.png"></image>
         <view class="mid-text">
-          <view class="mtext" style="font-size: 25px; font-family: '幼圆';"><text>酷狗音乐</text></view>
-          <view class="mtext" style="font-size: 10px; font-family: '华文细黑';"><text>音乐总有新玩法</text></view>
+          <view class="mtext" style="font-size: 1.5rem; font-family: '幼圆';"><text>酷狗音乐</text></view>
+          <view class="mtext" style="font-size: 0.6rem; font-family: '华文细黑';"><text>音乐总有新玩法</text></view>
         </view>
       </view>
       <view class="event">
@@ -97,7 +97,7 @@
   }
   .login-btn {
     font-family: "华文楷体";
-    font-size: 17px;
+    font-size: 1rem;
     width: 248px; height: 35px;
     line-height: 35px;
     border-radius: 25px;
@@ -106,9 +106,8 @@
   .login-way-text {
     text-align: center;
     white-space: pre;
-    color: #FFFFFF;
     font-family: "华文楷体";
-    font-size: 12px;
+    font-size: 0.72rem;
     margin-top: 38px;
   }
   .login-way-text::after,.login-way-text::before{
@@ -122,7 +121,7 @@
   .login-way-select {
     width: 235px; height: 41px;
     font-family: "华文楷体";
-    font-size: 10px;
+    font-size: 0.6rem;
     margin:0 auto;
     display: flex;
     flex-direction: row;
@@ -139,7 +138,7 @@
   .agreement {
     text-align: center;
     font-family: "华文楷体";
-    font-size: 10px;
+    font-size: 0.6rem;
     margin-top: 31px;
   }
   text {
