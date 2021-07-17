@@ -298,7 +298,9 @@
   
   .advitisement {
     height: 38px;
-    padding: 0px 20px;
+    margin: 0px 20px;
+    border-top:1px solid #0a8ec5;
+    border-bottom:1px solid #0a8ec5;
     display: flex;
     flex-direction: row;
     align-items: center;
