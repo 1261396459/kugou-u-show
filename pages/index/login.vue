@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="main">
     <view class="status_bar">
       <!-- 这里是状态栏 -->
     </view>
@@ -21,15 +21,15 @@
       <view class="login-way-text"><text>其他登录方式</text></view>
       <view class="login-way-select">
         <view>
-          <img src="../../static/pic/weibo.png" class="">
+          <image src="../../static/pic/weibo.png">
           <view><text>微博</text></view>
         </view>
         <view>
-          <img src="../../static/pic/qq.png" class="">
+          <image src="../../static/pic/qq.png">
           <view><text>QQ</text></view>
         </view>
         <view>
-          <img src="../../static/pic/wechat.png" class="">
+          <image src="../../static/pic/wechat.png">
           <view><text>微信</text></view>
         </view>
       </view>
@@ -56,11 +56,24 @@
 </script>
 
 <style scoped>
-  page {
-    background-image: url(../../static/pic/bg1.jpg);
+/* #ifdef APP-PLUS */
+  .main {
+    background-image: url('~@/static/pic/bg1.jpg');
     background-size: 100% 100%;
-    width: 100%;  height: 100%;  
+    width: 100%;  height: 100%;
+    position: absolute;
+    top: auto;
+    left: auto;
+    z-index: -2;
   }
+/* #endif */
+/* #ifdef H5 */
+  page {
+    background-image: url('~@/static/pic/bg1.jpg');
+    background-size: 100% 100%;
+    width: 100%;  height: 100%;
+  }
+/* #endif */
   .content {
     width: 100%; height: 100%;
   }
@@ -108,7 +121,10 @@
     margin-bottom: 14px;
   }
   .login-way-text {
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     white-space: pre;
     font-family: "华文楷体";
     font-size: 0.72rem;
@@ -117,8 +133,6 @@
   .login-way-text::after,.login-way-text::before{
     content: "";
     background: #FFFFFF;
-    display: inline-flex;
-    align-items: center;
     height: 1px;
     width: 35%;
   }
@@ -132,12 +146,12 @@
     justify-content: space-between;
     margin-top: 28px;
   }
+  .login-way-select image {
+    width: 22px; height: 22px;
+  }
   .login-way-select text {
     display: flex;
     justify-content: center;
-  }
-  .login-way-icon {
-    height: 22px;
   }
   .agreement {
     text-align: center;
