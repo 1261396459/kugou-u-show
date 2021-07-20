@@ -5,6 +5,9 @@
     },
     {
       "path": "pages/index/index"
+    },
+    {
+      "path": "pages/index/play"
     }
   ],
   "globalStyle": {
