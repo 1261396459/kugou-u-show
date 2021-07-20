@@ -26,14 +26,14 @@
         <image class="messege" src="/static/pic/email.png"></image>
       </view>
       <view class="my-music">
-        <view class="my-music-item" v-for="item in myMusic">
+        <view class="my-music-item" v-for="item,index in myMusic" :key="index" v-once>
           <image class="icon" :src="item.iconUrl"></image>
           <text class="alt">{{ item.title }}</text>
           <text class="num">{{ item.num }}</text>
         </view>
       </view>
       <view class="all-music">
-        <view class="all-music-item" v-for="item in allMusic">
+        <view class="all-music-item" v-for="item,index in allMusic" :key="index" v-once>
           <view class="icon-bg" :style="'background-color:'+item.bgc">
             <image class="icon" :src="item.iconUrl"></image>
           </view>
