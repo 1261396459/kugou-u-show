@@ -55,114 +55,98 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  @import '~@/tool.scss';
 /* #ifdef APP-PLUS */
   .main {
-    background-image: url('~@/static/pic/bg1.jpg');
-    background-size: 100% 100%;
-    width: 100%;  height: 100%;
-    position: absolute;
-    top: auto;
-    left: auto;
-    z-index: -2;
+    @include i-background-app('~@/static/pic/bg1.jpg');
   }
 /* #endif */
 /* #ifdef H5 */
   page {
-    background-image: url('~@/static/pic/bg1.jpg');
-    background-size: 100% 100%;
-    width: 100%;  height: 100%;
+    @include i-background-h5('~@/static/pic/bg1.jpg');
   }
 /* #endif */
   .content {
-    width: 100%; height: 100%;
+    @extend .i-fill-container;
+    /* 页面默认使用白色华文楷体 */
+    font-family: "华文楷体";
+    color: #FFFFFF;
   }
   .navigatebar {
-    display:flex;/*Flex布局*/
-    display: -webkit-flex; /* Safari */
-    align-items:center;/*指定垂直居中*/
+    @extend .i-row-vertical-center;
     height: 33px;
-  }
-  .close {
-    width: 14px; height: 14px;
-    margin-left: 19px;
+    
+    .close {
+      width: 14px; height: 14px;
+      margin-left: 19px;
+    }
   }
   .logo-text {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    @extend .i-row-horizontal-center;
     margin-top: 101px;
-  }
-  .mid-logo {
-    width: 59px; height: 59px;
-  }
-  .mid-text {
-    /* 1 */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: 26px;
-  }
-  .mtext {
-    width: 160px;
-    display: inline-block;
-    text-align: justify;
-    text-align-last: justify;
+    
+    .mid-logo {
+      width: 59px; height: 59px;
+    }
+    .mid-text {
+      @extend .i-col-vertical-between;
+      margin-left: 26px;
+      
+      .mtext {
+        width: 160px;
+        @extend .i-text-between;
+      }
+    }
   }
   .event {
     margin-top: 183px;
-  }
-  .login-btn {
-    font-family: "华文楷体";
-    font-size: 1rem;
-    width: 248px; height: 35px;
-    line-height: 35px;
-    border-radius: 25px;
-    margin-bottom: 14px;
+    
+    .login-btn {
+      color: #FFFFFF;
+      font-size: 1rem;
+      width: 248px; height: 35px;
+      line-height: 35px;
+      border-radius: 25px;
+      margin-bottom: 14px;
+    }
   }
   .login-way-text {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    @extend .i-row-horizontal-center, .i-row-vertical-center;
     white-space: pre;
-    font-family: "华文楷体";
     font-size: 0.72rem;
     margin-top: 38px;
-  }
-  .login-way-text::after,.login-way-text::before{
-    content: "";
-    background: #FFFFFF;
-    height: 1px;
-    width: 35%;
+    
+    &::after, &::before{
+      content: "";
+      background: #FFFFFF;
+      height: 1px;
+      width: 35%;
+    }
   }
   .login-way-select {
     width: 235px; height: 41px;
-    font-family: "华文楷体";
     font-size: 0.6rem;
     margin:0 auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    @extend .i-row-horizontal-between;
     margin-top: 28px;
-  }
-  .login-way-select image {
-    width: 22px; height: 22px;
-  }
-  .login-way-select text {
-    display: flex;
-    justify-content: center;
+    
+    image {
+      width: 22px; height: 22px;
+    }
+    
+    text {
+      display: flex;
+      @extend .i-row-horizontal-center;
+    }
   }
   .agreement {
     text-align: center;
-    font-family: "华文楷体";
     font-size: 0.6rem;
     margin-top: 31px;
-  }
-  text {
-    color: #FFFFFF;
-  }
-  span {
-    color: #037cc2;
+    
+    span {
+      color: #037cc2;
+    }
   }
 </style>
