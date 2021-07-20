@@ -22,14 +22,15 @@
 
 <style scoped lang="scss">
     @import '~@/tool.scss';
+    $bgi: '';
 /* #ifdef APP-PLUS */
   .main {
-    @include i-background-app('');
+    @include i-background-app($bgi);
   }
 /* #endif */
 /* #ifdef H5 */
   page {
-    @include i-background-h5('');
+    @include i-background-h5($bgi);
   }
 /* #endif */
 </style>

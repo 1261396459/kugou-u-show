@@ -5,7 +5,7 @@
     </view>
     <view class="content">
       <view class="navigatebar">
-        <image class="close" src="/static/pic/close.png"></image>
+        <image class="close" src="/static/pic/login/close.png"></image>
       </view>
       <view class="logo-text">
         <image class="mid-logo" src="/static/logo.png"></image>
@@ -21,15 +21,15 @@
       <view class="login-way-text"><text>其他登录方式</text></view>
       <view class="login-way-select">
         <view>
-          <image src="/static/pic/weibo.png">
+          <image src="/static/pic/login/weibo.png">
           <view><text>微博</text></view>
         </view>
         <view>
-          <image src="/static/pic/qq.png">
+          <image src="/static/pic/login/qq.png">
           <view><text>QQ</text></view>
         </view>
         <view>
-          <image src="/static/pic/wechat.png">
+          <image src="/static/pic/login/wechat.png">
           <view><text>微信</text></view>
         </view>
       </view>
@@ -57,14 +57,15 @@
 
 <style scoped lang="scss">
   @import '~@/tool.scss';
+  $bgi: '/static/pic/login/bg1.jpg';
 /* #ifdef APP-PLUS */
   .main {
-    @include i-background-app('/static/pic/bg1.jpg');
+    @include i-background-app($bgi);
   }
 /* #endif */
 /* #ifdef H5 */
   page {
-    @include i-background-h5('/static/pic/bg1.jpg');
+    @include i-background-h5($bgi);
   }
 /* #endif */
   .content {
