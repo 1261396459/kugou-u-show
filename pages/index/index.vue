@@ -157,29 +157,20 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  @import '~@/tool.scss';
   /* #ifdef APP-PLUS */
     .main {
-      background-image: url('~@/static/pic/bg2.jpg');
-      background-size: 100% 100%;
-      width: 100%;  height: 100%;
-      position: absolute;
-      top: auto;
-      left: auto;
-      z-index: -2;
+      @include i-background-app('~@/static/pic/bg2.jpg');
     }
   /* #endif */
   /* #ifdef H5 */
     page {
-      background-image: url('~@/static/pic/bg2.jpg');
-      background-size: 100% 100%;
-      width: 100%;  height: 100%;
+      @include i-background-h5('~@/static/pic/bg2.jpg');
     }
   /* #endif */
   page {
     font-family: '华文楷体';
-  }
-  text {
     font-size: 1.2rem;
     color: #FFFFFF;
   }
@@ -187,141 +178,129 @@
     height: 51px;
     padding: 0px 18px;
     font-family: '幼圆';
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .menu {
-    width: 18px;  height: 15px;
-  }
-  .search {
-    width: 18px;  height: 18px;
-  }
+    @extend .i-row-vertical-center, .i-row-horizontal-between;
   
+    .menu {
+      width: 18px;  height: 15px;
+    }
+    .search {
+      width: 18px;  height: 18px;
+    }
+  }
   .personal {
     height: 60px;
     padding: 0px 18px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    @extend .i-row-vertical-center;
+    
+    .avatar {
+      width: 43px;  height: 43px;
+    }
+    .infor{
+      margin-left: 14.66px;
+      .up {
+        
+        .nickname {
+          font-size: 0.6em;
+          margin-right: 6px;
+        }
+        .vip {
+          width: 8px;  height: 5px;
+        }
+      }
+      .down {
+        @extend .i-row;
+        margin-top: 10px;
+        
+        .level {
+          font-size: 0.34em;
+          font-family: '华文中宋';
+          color: #f9a80b;
+          border: 1px solid #f9a80b ;
+          border-radius: 2px;
+          margin-right: 6px;
+        }
+        .duration {
+          font-size: 0.36em;
+          white-space: nowrap;
+          color: #b5b4b1;
+        }
+      }
+    }
+    .messege {
+      width: 14px; height: 11px;
+      margin-left: 169px;
+    }
   }
-  .avatar {
-    width: 43px;  height: 43px;
-  }
-  .infor{
-    margin-left: 14.66px;
-  }
-  .nickname {
-    font-size: 0.6em;
-    margin-right: 6px;
-  }
-  .vip {
-    width: 8px;  height: 5px;
-  }
-  .down {
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
-  }
-  .level {
-    font-size: 0.34em;
-    font-family: '华文中宋';
-    color: #f9a80b;
-    border: 1px solid #f9a80b ;
-    border-radius: 2px;
-    margin-right: 6px;
-  }
-  .duration {
-    font-size: 0.36em;
-    white-space: nowrap;
-    color: #b5b4b1;
-  }
-  .messege {
-    width: 14px; height: 11px;
-    margin-left: 169px;
-  }
-  
   .my-music {
     height: 96px;
     margin: 0px 15.66px ;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    @extend .i-row-horizontal-between;
     padding: 16px;
-  }
-  .my-music-item {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-  }
-  .my-music-item .icon {
-    width: 26px;  height: 26px;    
-  }
-  .my-music-item .alt {
-    font-size: 0.72rem;
-    margin-top: 15px;
-  }
-  .my-music-item .num {
-    font-size: 0.6rem;
-    color: #b5b4b1;
-    margin-top: 9px;
+  
+    .my-music-item {
+      @extend .i-col-horizontal-center;
+      
+      .icon {
+        width: 26px;  height: 26px;    
+      }      
+      .alt {
+        font-size: 0.72rem;
+        margin-top: 15px;
+      }     
+      .num {
+        font-size: 0.6rem;
+        color: #b5b4b1;
+        margin-top: 9px;
+      }
+    }
   }
   .all-music {
     height: 206px;  width: 100%;
-    display: flex;
-    flex-direction: row;
+    @extend .i-row;
     flex-wrap: wrap;
+
+    .all-music-item {
+      height: fit-content;
+      @extend .i-col-horizontal-center;
+      margin: 0px 32px;
+      
+      .icon-bg {
+        width: 55px;  height: 55px;
+        border-radius: 27.5px;
+        @extend .i-row-vertical-center, .i-row-horizontal-center;
+      }      
+      .icon {
+        width: 18px;  height: 21px;   
+      }     
+      .alt {
+        font-size: 0.6rem;
+        color: #87cbcc;
+        margin: 11px 0px;
+      }
+    }
   }
-  .all-music-item {
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0px 32px;
-  }
-  .all-music-item .icon-bg {
-    width: 55px;  height: 55px;
-    border-radius: 27.5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .all-music-item .icon {
-    width: 18px;  height: 21px;   
-  }
-  .all-music-item .alt {
-    font-size: 0.6rem;
-    color: #87cbcc;
-    margin: 11px 0px;
-  }
-  
   .advitisement {
     height: 38px;
     margin: 0px 20px;
     border-top:1px solid #0a8ec5;
     border-bottom:1px solid #0a8ec5;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .advitisement .left {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  .advitisement .icon {
-    width: 19px;  height: 19px;
-    margin-right: 12px;
-  }
-  .advitisement .alt {
-    font-size: 0.72rem;
-    color: #87cbcc;
-  }
-  .advitisement .report {
-    font-size: 0.6rem;
-    color: #87cbcc;
+    @extend .i-row-vertical-center, .i-row-horizontal-between;
+    
+    .left {
+      @extend .i-row-vertical-center;
+    }   
+    .icon {
+      width: 19px;  height: 19px;
+      margin-right: 12px;
+    }  
+    .alt {
+      font-size: 0.72rem;
+      color: #87cbcc;
+    }   
+    .report {
+      font-size: 0.6rem;
+      color: #87cbcc;
+    }
   }
   .tabbar {
     width: 100%; height: 66px;
@@ -329,71 +308,70 @@
     position: fixed;
     bottom: 0px;
     background-color: #151f28;
-    display: flex;
-    flex-direction: row;
-  }
-  .tabbar .cover{
-    width: 59px; height: 59px;
-    margin: 0px 12px;
-    border-radius: 30px;
-    border: solid #080c10 3px;
-    position: relative;
-    bottom: 5px;
-  }
-  .tabbar .right{
-    width: 100%; height: 100%;
-  }
-  .tabbar .up{
-    width: 100%; height: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .tabbar .up .loading{
-    width: 100%; height: 1px;
-    background-color: #01182d;
-    display: flex;
-    align-items: center;
-  }
-  .tabbar .up .loading .pass{
-    width: 50%; height: 1px;
-    background-color: #2190f3;
-  }
-  .tabbar .up .loading .in{
-    width: 6px; height: 6px;
-    border-radius: 3px;
-    background-color: #2190f3;
-  }
-  .tabbar .down{
-    width: 100%; height: 50%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 0px;
-  }
-  .tabbar .information{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-  }
-  .tabbar .operation{
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  .tabbar .m-name{
-    height: 50%;
-    font-size: 0.6rem;
-    overflow: hidden;   
-    white-space: nowrap;     
-    text-overflow: ellipsis; 
-  }
-  .tabbar .m-singer{
-    height: 50%;
-    font-size: 0.48rem;
-  }
-  .tabbar .icon{
-    width: 11px; height: 11px;
+    @extend .i-row;
+    
+    .cover{
+      width: 59px; height: 59px;
+      margin: 0px 12px;
+      border-radius: 30px;
+      border: solid #080c10 3px;
+      position: relative;
+      bottom: 5px;
+    }
+    .right{
+      width: 100%; height: 100%;
+      
+      .up{
+        width: 100%; height: 50%;
+        @extend .i-row-vertical-center, .i-row-horizontal-center;
+      
+        .loading{
+          width: 100%; height: 1px;
+          background-color: #01182d;
+          @extend .i-row-vertical-center;
+          
+          .pass{
+            width: 50%; height: 1px;
+            background-color: #2190f3;
+          }     
+          .in{
+            width: 6px; height: 6px;
+            border-radius: 3px;
+            background-color: #2190f3;
+          }           
+        }
+      }
+      .down{
+        width: 100%; height: 50%;
+        @extend .i-row-horizontal-between;
+        margin-top: 0px;
+        
+        .information{
+          width: 50%;
+          @extend .i-col;
+          
+          .m-name{
+            height: 50%;
+            font-size: 0.6rem;
+            overflow: hidden;   
+            white-space: nowrap;     
+            text-overflow: ellipsis; 
+          }         
+          .m-singer{
+            height: 50%;
+            font-size: 0.48rem;
+          }
+        }
+        
+        .operation{
+          width: 50%;
+          @extend .i-row-horizontal-around;
+          
+          .icon{
+            width: 11px; height: 11px;
+          }
+        }
+      }
+    }
   }
 </style>
