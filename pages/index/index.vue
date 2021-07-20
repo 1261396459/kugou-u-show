@@ -6,7 +6,7 @@
     <view class="content">
       <view class="navigatebar">
         <image class="menu" src="/static/pic/hamburger.png"></image>
-        <view><text>听</text></view>
+        <view><text class="gri">听</text></view>
         <view><text>看</text></view>
         <view><text>唱</text></view>
         <image class="search" src="/static/pic/search.png"></image>
@@ -178,6 +178,7 @@
     height: 51px;
     padding: 0px 18px;
     font-family: '幼圆';
+    color: #076cce;
     @extend .i-row-vertical-center, .i-row-horizontal-between;
   
     .menu {
@@ -185,6 +186,12 @@
     }
     .search {
       width: 18px;  height: 18px;
+    }
+    .gri {
+      /* 文字渐变，只支持webkit浏览器 */
+      background-image: linear-gradient(to top,#43d5eb,#fff);
+      -webkit-background-clip: text;
+      color: transparent;
     }
   }
   .personal {
