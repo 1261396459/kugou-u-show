@@ -5,25 +5,25 @@
     </view>
     <view class="content">
       <view class="navigatebar">
-        <image class="menu" src="../../static/pic/hamburger.png"></image>
+        <image class="menu" src="/static/pic/hamburger.png"></image>
         <view><text>听</text></view>
         <view><text>看</text></view>
         <view><text>唱</text></view>
-        <image class="search" src="../../static/pic/search.png"></image>
+        <image class="search" src="/static/pic/search.png"></image>
       </view>
       <view class="personal">
         <image class="avatar" :src="me.avatarUrl"></image>
         <view class="infor">
           <view class="up">
             <text class="nickname">{{ me.nickname }}</text>
-            <image class="vip" src="../../static/pic/vip.png"></image>
+            <image class="vip" src="/static/pic/vip.png"></image>
           </view>
           <view class="down">
             <view class="level">LV.{{ me.level }}</view>
             <text class="duration">听歌{{ me.duration }}分钟</text>
           </view>
         </view>
-        <image class="messege" src="../../static/pic/email.png"></image>
+        <image class="messege" src="/static/pic/email.png"></image>
       </view>
       <view class="my-music">
         <view class="my-music-item" v-for="item in myMusic">
@@ -42,7 +42,7 @@
       </view>
       <view class="advitisement">
         <view class="left">
-          <image class="icon" src="../../static/pic/sound.png"></image>
+          <image class="icon" src="/static/pic/sound.png"></image>
           <text class="alt">推广</text>
         </view>
         <text class="report">装了这个app不用再去ktv</text>
@@ -50,7 +50,7 @@
       <view class="tabbar">
         <view class="left">
           <view>
-            <image class="cover" src="../../static/pic/disc.jpg"></image>
+            <image class="cover" :src="playing.cover"></image>
           </view>
         </view>
         <view class="right">
@@ -67,13 +67,13 @@
             </view>
             <view class="operation">
               <view>
-                <image class="icon" src="../../static/pic/play.png"></image>
+                <image class="icon" src="/static/pic/play.png"></image>
               </view>
               <view>
-                <image class="icon" src="../../static/pic/next.png"></image>
+                <image class="icon" src="/static/pic/next.png"></image>
               </view>
               <view>
-                <image class="icon" src="../../static/pic/menu.png"></image>
+                <image class="icon" src="/static/pic/menu.png"></image>
               </view>
             </view>
           </view>
@@ -88,65 +88,65 @@
     data() {
       return {
         me: {
-          avatarUrl: '../../static/pic/avatar.png',
+          avatarUrl: '/static/pic/avatar.png',
           nickname: '胡萝北',
           level: 5,
           duration: 15302
         },
         playing: {
           id: 1,
-          cover: '../../static/pic/disc.jpg',
+          cover: '/static/pic/disc.jpg',
           m_name: '日落大道歌手2017第阿双方均按法律奇偶发哈',
           m_singer: '梁博'
         },
         myMusic: [
           {
-            iconUrl: '../../static/pic/pc.png',
+            iconUrl: '/static/pic/pc.png',
             title: '本地音乐',
             num: 148
           },
           {
-            iconUrl: '../../static/pic/heart.png',
+            iconUrl: '/static/pic/heart.png',
             title: '喜欢·歌单',
             num: 3
           },          {
-            iconUrl: '../../static/pic/dwonload.png',
+            iconUrl: '/static/pic/dwonload.png',
             title: '下载',
             num: 2
           },          {
-            iconUrl: '../../static/pic/clock.png',
+            iconUrl: '/static/pic/clock.png',
             title: '最近',
             num: 100
           }
         ],
         allMusic: [
           {
-            iconUrl: '../../static/pic/lib.png',
+            iconUrl: '/static/pic/lib.png',
             bgc: '#06b062',
             title: '乐库'
           },
           {
-            iconUrl: '../../static/pic/list.png',
+            iconUrl: '/static/pic/list.png',
             bgc: '#067ab0',
             title: '歌单'
           },
           {
-            iconUrl: '../../static/pic/chart.png',
+            iconUrl: '/static/pic/chart.png',
             bgc: '#e62134',
             title: '电台·酷群'
           },
           {
-            iconUrl: '../../static/pic/radio.png',
+            iconUrl: '/static/pic/radio.png',
             bgc: '#c25bd1',
             title: '猜你喜欢'
           },
           {
-            iconUrl: '../../static/pic/chart.png',
+            iconUrl: '/static/pic/chart.png',
             bgc: '#edb231',
             title: '每日推荐'
           },
           {
-            iconUrl: '../../static/pic/speech.png',
+            iconUrl: '/static/pic/speech.png',
             bgc: '#4be22d',
             title: '听歌识曲'
           },
@@ -161,12 +161,12 @@
   @import '~@/tool.scss';
   /* #ifdef APP-PLUS */
     .main {
-      @include i-background-app('~@/static/pic/bg2.jpg');
+      @include i-background-app('/static/pic/bg2.jpg');
     }
   /* #endif */
   /* #ifdef H5 */
     page {
-      @include i-background-h5('~@/static/pic/bg2.jpg');
+      @include i-background-h5('/static/pic/bg2.jpg');
     }
   /* #endif */
   page {

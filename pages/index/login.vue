@@ -5,10 +5,10 @@
     </view>
     <view class="content">
       <view class="navigatebar">
-        <image class="close" src="../../static/pic/close.png"></image>
+        <image class="close" src="/static/pic/close.png"></image>
       </view>
       <view class="logo-text">
-        <image class="mid-logo" src="../../static/logo.png"></image>
+        <image class="mid-logo" src="/static/logo.png"></image>
         <view class="mid-text">
           <view class="mtext" style="font-size: 1.5rem; font-family: '幼圆';"><text>酷狗音乐</text></view>
           <view class="mtext" style="font-size: 0.6rem; font-family: '华文细黑';"><text>音乐总有新玩法</text></view>
@@ -21,15 +21,15 @@
       <view class="login-way-text"><text>其他登录方式</text></view>
       <view class="login-way-select">
         <view>
-          <image src="../../static/pic/weibo.png">
+          <image src="/static/pic/weibo.png">
           <view><text>微博</text></view>
         </view>
         <view>
-          <image src="../../static/pic/qq.png">
+          <image src="/static/pic/qq.png">
           <view><text>QQ</text></view>
         </view>
         <view>
-          <image src="../../static/pic/wechat.png">
+          <image src="/static/pic/wechat.png">
           <view><text>微信</text></view>
         </view>
       </view>
@@ -59,12 +59,12 @@
   @import '~@/tool.scss';
 /* #ifdef APP-PLUS */
   .main {
-    @include i-background-app('~@/static/pic/bg1.jpg');
+    @include i-background-app('/static/pic/bg1.jpg');
   }
 /* #endif */
 /* #ifdef H5 */
   page {
-    @include i-background-h5('~@/static/pic/bg1.jpg');
+    @include i-background-h5('/static/pic/bg1.jpg');
   }
 /* #endif */
   .content {
