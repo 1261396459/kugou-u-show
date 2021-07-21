@@ -208,7 +208,7 @@
       .up {
         
         .nickname {
-          font-size: 0.6em;
+          font-size: 0.6rem;
           margin-right: 6px;
         }
         .vip {
@@ -220,7 +220,7 @@
         margin-top: 10px;
         
         .level {
-          font-size: 0.34em;
+          font-size: 0.34rem;
           font-family: '华文中宋';
           color: #f9a80b;
           border: 1px solid #f9a80b ;
@@ -228,7 +228,7 @@
           margin-right: 6px;
         }
         .duration {
-          font-size: 0.36em;
+          font-size: 0.36rem;
           white-space: nowrap;
           color: #b5b4b1;
         }
