@@ -27,7 +27,7 @@
         <image class="messege" src="/static/pic/index/email.png"></image>
       </view>
       <view class="my-music">
-        <view class="my-music-item" v-for="item,index in myMusic" :key="index" v-once>
+        <view class="my-music-item" v-for="item,index in myMusic" :key="index"  @click="toPlayList(index)" v-once>
           <image class="icon" :src="item.iconUrl"></image>
           <text class="alt">{{ item.title }}</text>
           <text class="num">{{ item.num }}</text>
@@ -154,7 +154,14 @@
         ]
       }
     },
-    methods:{}
+    methods:{
+      toPlayList(id){
+        if(id == 3)
+          uni.navigateTo({
+            url: 'playlist'
+          });
+      }
+    }
   }
 </script>
 
