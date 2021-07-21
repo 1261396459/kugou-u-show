@@ -1,5 +1,8 @@
 <template>
   <view class="main">
+    <view class="bg">
+      <!-- 这里是背景图 -->
+    </view>
     <view class="status_bar">
       <!-- 这里是状态栏 -->
     </view>
@@ -21,16 +24,12 @@
 </script>
 
 <style scoped lang="scss">
-    @import '~@/tool.scss';
-    $bgi: '';
-/* #ifdef APP-PLUS */
-  .main {
+  @import '~@/tool.scss';
+  $bgi: '';
+  .bg {
     @include i-background-app($bgi);
   }
-/* #endif */
-/* #ifdef H5 */
-  page {
-    @include i-background-h5($bgi);
+  .content {
+    /* 存放整体页面信息 */
   }
-/* #endif */
 </style>

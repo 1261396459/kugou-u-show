@@ -1,5 +1,6 @@
 <template>
   <view class="main">
+    <view class="bg"></view>
     <view class="status_bar">
       <!-- 这里是状态栏 -->
     </view>
@@ -58,19 +59,11 @@
 <style scoped lang="scss">
   @import '~@/tool.scss';
   $bgi: '/static/pic/login/bg1.jpg';
-/* #ifdef APP-PLUS */
-  .main {
+  .bg {
     @include i-background-app($bgi);
   }
-/* #endif */
-/* #ifdef H5 */
-  page {
-    @include i-background-h5($bgi);
-  }
-/* #endif */
   .content {
-    @extend .i-fill-container;
-    /* 页面默认使用白色华文楷体 */
+    @extend .i-fill-container;    
     font-family: "华文楷体";
     color: #FFFFFF;
   }
