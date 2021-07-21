@@ -1813,40 +1813,146 @@ var render = function() {
             ],
             1
           ),
-          _c("v-uni-view", {
-            staticClass: _vm._$g(20, "sc"),
-            attrs: { _i: 20 }
-          }),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(21, "sc"), attrs: { _i: 21 } },
+            { staticClass: _vm._$g(20, "sc"), attrs: { _i: 20 } },
             [
-              _c("v-uni-image", {
-                attrs: { src: _vm._$g(22, "a-src"), _i: 22 }
+              _c(
+                "v-uni-view",
+                { attrs: { _i: 21 } },
+                [
+                  _c("v-uni-image", { attrs: { _i: 22 } }),
+                  _c("v-uni-text", { attrs: { _i: 23 } }, [
+                    _vm._v(_vm._$g(23, "t0-0"))
+                  ]),
+                  _c("v-uni-image", {
+                    attrs: { src: "/static/pic/play/micro.png", _i: 24 }
+                  })
+                ],
+                1
+              ),
+              _c(
+                "v-uni-view",
+                { attrs: { _i: 25 } },
+                [
+                  _c("v-uni-image", { attrs: { _i: 26 } }),
+                  _c("v-uni-text", { attrs: { _i: 27 } }, [
+                    _vm._v(_vm._$g(27, "t0-0"))
+                  ]),
+                  _c("v-uni-image", {
+                    attrs: { src: "/static/pic/play/barrage.png", _i: 28 }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(29, "sc"), attrs: { _i: 29 } },
+            [
+              _c("v-uni-view", {
+                staticClass: _vm._$g(30, "sc"),
+                style: _vm._$g(30, "s"),
+                attrs: { _i: 30 }
               }),
-              _c("v-uni-image", {
-                attrs: { src: _vm._$g(23, "a-src"), _i: 23 }
-              }),
-              _c("v-uni-image", {
-                attrs: { src: _vm._$g(24, "a-src"), _i: 24 }
-              }),
-              _c("v-uni-image", {
-                attrs: { src: _vm._$g(25, "a-src"), _i: 25 }
-              }),
-              _c("v-uni-image", {
-                attrs: { src: _vm._$g(26, "a-src"), _i: 26 }
+              _c("v-uni-view", {
+                staticClass: _vm._$g(31, "sc"),
+                style: _vm._$g(31, "s"),
+                attrs: { _i: 31 }
               })
             ],
             1
           ),
-          _c("v-uni-view", {
-            staticClass: _vm._$g(27, "sc"),
-            attrs: { _i: 27 }
-          }),
-          _c("v-uni-view", {
-            staticClass: _vm._$g(28, "sc"),
-            attrs: { _i: 28 }
-          })
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(32, "sc"), attrs: { _i: 32 } },
+            [
+              _c("v-uni-image", {
+                attrs: { src: _vm._$g(33, "a-src"), _i: 33 }
+              }),
+              _c("v-uni-image", {
+                attrs: { src: _vm._$g(34, "a-src"), _i: 34 }
+              }),
+              _c("v-uni-image", {
+                attrs: { src: _vm._$g(35, "a-src"), _i: 35 }
+              }),
+              _c("v-uni-image", {
+                attrs: { src: _vm._$g(36, "a-src"), _i: 36 }
+              }),
+              _c("v-uni-image", {
+                attrs: { src: _vm._$g(37, "a-src"), _i: 37 }
+              })
+            ],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(38, "sc"), attrs: { _i: 38 } },
+            [
+              _c(
+                "v-uni-text",
+                { staticClass: _vm._$g(39, "sc"), attrs: { _i: 39 } },
+                [_vm._v(_vm._$g(39, "t0-0"))]
+              ),
+              _c(
+                "v-uni-view",
+                { staticClass: _vm._$g(40, "sc"), attrs: { _i: 40 } },
+                [
+                  _c("v-uni-view", {
+                    staticClass: _vm._$g(41, "sc"),
+                    attrs: { _i: 41 }
+                  }),
+                  _c("v-uni-view", {
+                    staticClass: _vm._$g(42, "sc"),
+                    attrs: { _i: 42 }
+                  })
+                ],
+                1
+              ),
+              _c(
+                "v-uni-text",
+                { staticClass: _vm._$g(43, "sc"), attrs: { _i: 43 } },
+                [_vm._v(_vm._$g(43, "t0-0"))]
+              )
+            ],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(44, "sc"), attrs: { _i: 44 } },
+            [
+              _c("v-uni-image", {
+                staticClass: _vm._$g(45, "sc"),
+                attrs: { src: "/static/pic/play/darrow.png", _i: 45 }
+              }),
+              _c(
+                "v-uni-view",
+                { attrs: { _i: 46 } },
+                [
+                  _c("v-uni-image", {
+                    staticClass: _vm._$g(47, "sc"),
+                    attrs: { src: "/static/pic/play/last.png", _i: 47 }
+                  }),
+                  _c("v-uni-image", {
+                    staticClass: _vm._$g(48, "sc"),
+                    attrs: { src: "/static/pic/play/play.png", _i: 48 }
+                  }),
+                  _c("v-uni-image", {
+                    staticClass: _vm._$g(49, "sc"),
+                    attrs: { src: "/static/pic/play/next.png", _i: 49 }
+                  })
+                ],
+                1
+              ),
+              _c("v-uni-image", {
+                staticClass: _vm._$g(50, "sc"),
+                attrs: { src: "/static/pic/play/menu.png", _i: 50 }
+              })
+            ],
+            1
+          )
         ],
         1
       )
@@ -1945,7 +2051,7 @@ var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(/*! @/static/pic/play/di
 exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.i-fill-container[data-v-4947c54c], .bg[data-v-4947c54c] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.i-row[data-v-4947c54c], .i-row-vertical-center[data-v-4947c54c], .navigatebar[data-v-4947c54c], .m-singer[data-v-4947c54c], .m-effect[data-v-4947c54c], .i-row-horizontal-center[data-v-4947c54c], .i-row-horizontal-between[data-v-4947c54c], .i-row-horizontal-around[data-v-4947c54c], .interactive[data-v-4947c54c] {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  display: -webkit-flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: row;\r\n          flex-direction: row;\n}\n.i-row-vertical-center[data-v-4947c54c], .navigatebar[data-v-4947c54c], .m-singer[data-v-4947c54c], .m-effect[data-v-4947c54c] {\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\n}\n.i-row-horizontal-center[data-v-4947c54c], .m-singer[data-v-4947c54c] {\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\n}\n.i-row-horizontal-between[data-v-4947c54c], .m-effect[data-v-4947c54c] {\r\n  -webkit-box-pack: justify;\r\n  -webkit-justify-content: space-between;\r\n          justify-content: space-between;\n}\n.i-row-horizontal-around[data-v-4947c54c], .interactive[data-v-4947c54c] {\r\n  -webkit-justify-content: space-around;\r\n          justify-content: space-around;\n}\n.i-col[data-v-4947c54c], .i-col-vertical-center[data-v-4947c54c], .i-col-vertical-between[data-v-4947c54c], .i-col-horizontal-center[data-v-4947c54c] {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  display: -webkit-flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\n}\n.i-col-vertical-center[data-v-4947c54c] {\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\n}\n.i-col-vertical-between[data-v-4947c54c] {\r\n  -webkit-box-pack: justify;\r\n  -webkit-justify-content: space-between;\r\n          justify-content: space-between;\n}\n.i-col-horizontal-center[data-v-4947c54c] {\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\n}\n.i-text-between[data-v-4947c54c] {\r\n  display: inline-block;\r\n  text-align: justify;\r\n  text-align-last: justify;\n}\n.i-text-omit-line[data-v-4947c54c], .navigatebar .m-name[data-v-4947c54c] {\r\n  overflow: hidden;\r\n  white-space: nowrap;\r\n  text-overflow: ellipsis;\n}\n.bg[data-v-4947c54c] {\r\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n  background-size: 100% 100%;\r\n  position: fixed;\r\n  top: auto;\r\n  left: auto;\r\n  z-index: -2;\r\n  -webkit-filter: blur(20px);\r\n          filter: blur(20px);\n}\n.content[data-v-4947c54c] {\r\n  font-family: '华文楷体';\r\n  color: #FFFFFF;\n}\n.navigatebar[data-v-4947c54c] {\r\n  height: 53.33px;\n}\n.navigatebar .back[data-v-4947c54c] {\r\n  width: 10.33px;\r\n  height: 19.66px;\r\n  margin: 0px 12.33px;\n}\n.navigatebar .m-name[data-v-4947c54c] {\r\n  width: 80%;\r\n  font-size: 1.2rem;\n}\n.m-singer[data-v-4947c54c] {\r\n  height: 20.33px;\r\n  font-size: 0.96rem;\r\n  margin-bottom: 11.33px;\n}\n.m-singer[data-v-4947c54c]::after, .m-singer[data-v-4947c54c]::before {\r\n  content: \"\";\r\n  background: #b3b5b4;\r\n  height: 1px;\r\n  width: 5%;\n}\n.m-effect[data-v-4947c54c] {\r\n  width: 40%;\r\n  height: 29px;\r\n  margin: 0 auto;\n}\n.m-effect uni-view[data-v-4947c54c] {\r\n  border: 1px solid #FFFFFF;\r\n  border-radius: 5px;\n}\n.m-effect uni-text[data-v-4947c54c] {\r\n  font-size: 0.96rem;\n}\n.m-effect uni-image[data-v-4947c54c] {\r\n  width: 5.66px;\r\n  height: 3.33px;\n}\n.m-cover[data-v-4947c54c] {\r\n  height: 282.66px;\n}\n.m-lyric[data-v-4947c54c] {\r\n  height: 68.66px;\n}\n.interactive[data-v-4947c54c] {\r\n  height: 31.33px;\n}\n.interactive uni-image[data-v-4947c54c] {\r\n  width: 18.66px;\r\n  height: 18.66px;\n}\n.loading[data-v-4947c54c] {\r\n  height: 29px;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.i-fill-container[data-v-4947c54c], .bg[data-v-4947c54c] {\r\n  width: 100%;\r\n  height: 100%;\n}\n.i-row[data-v-4947c54c], .i-row-vertical-center[data-v-4947c54c], .navigatebar[data-v-4947c54c], .m-singer[data-v-4947c54c], .m-effect[data-v-4947c54c], .m-cover[data-v-4947c54c], .loading[data-v-4947c54c], .loading .loading-bar[data-v-4947c54c], .i-row-horizontal-center[data-v-4947c54c], .is-sing[data-v-4947c54c], .i-row-horizontal-between[data-v-4947c54c], .i-row-horizontal-around[data-v-4947c54c], .m-lyric uni-view[data-v-4947c54c], .interactive[data-v-4947c54c] {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  display: -webkit-flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: row;\r\n          flex-direction: row;\n}\n.i-row-vertical-center[data-v-4947c54c], .navigatebar[data-v-4947c54c], .m-singer[data-v-4947c54c], .m-effect[data-v-4947c54c], .m-cover[data-v-4947c54c], .loading[data-v-4947c54c], .loading .loading-bar[data-v-4947c54c] {\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\n}\n.i-row-horizontal-center[data-v-4947c54c], .m-singer[data-v-4947c54c], .m-cover[data-v-4947c54c], .is-sing[data-v-4947c54c] {\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\n}\n.i-row-horizontal-between[data-v-4947c54c], .m-effect[data-v-4947c54c] {\r\n  -webkit-box-pack: justify;\r\n  -webkit-justify-content: space-between;\r\n          justify-content: space-between;\n}\n.i-row-horizontal-around[data-v-4947c54c], .m-lyric uni-view[data-v-4947c54c], .interactive[data-v-4947c54c], .loading[data-v-4947c54c] {\r\n  -webkit-justify-content: space-around;\r\n          justify-content: space-around;\n}\n.i-col[data-v-4947c54c], .i-col-vertical-center[data-v-4947c54c], .i-col-vertical-between[data-v-4947c54c], .i-col-horizontal-center[data-v-4947c54c], .m-lyric[data-v-4947c54c] {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  display: -webkit-flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;\n}\n.i-col-vertical-center[data-v-4947c54c] {\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\n}\n.i-col-vertical-between[data-v-4947c54c] {\r\n  -webkit-box-pack: justify;\r\n  -webkit-justify-content: space-between;\r\n          justify-content: space-between;\n}\n.i-col-horizontal-center[data-v-4947c54c], .m-lyric[data-v-4947c54c] {\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\n}\n.i-text-between[data-v-4947c54c] {\r\n  display: inline-block;\r\n  text-align: justify;\r\n  text-align-last: justify;\n}\n.i-text-omit-line[data-v-4947c54c], .navigatebar .m-name[data-v-4947c54c] {\r\n  overflow: hidden;\r\n  white-space: nowrap;\r\n  text-overflow: ellipsis;\n}\n.bg[data-v-4947c54c] {\r\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n  background-size: 100% 100%;\r\n  position: fixed;\r\n  top: auto;\r\n  left: auto;\r\n  z-index: -2;\r\n  -webkit-filter: blur(8px);\r\n          filter: blur(8px);\n}\n.content[data-v-4947c54c] {\r\n  font-family: '华文楷体';\r\n  color: #FFFFFF;\n}\n.navigatebar[data-v-4947c54c] {\r\n  height: 53.33px;\n}\n.navigatebar .back[data-v-4947c54c] {\r\n  width: 10.33px;\r\n  height: 19.66px;\r\n  margin: 0px 12.33px;\n}\n.navigatebar .m-name[data-v-4947c54c] {\r\n  width: 80%;\r\n  font-size: 1.2rem;\n}\n.m-singer[data-v-4947c54c] {\r\n  height: 20.33px;\r\n  font-size: 0.96rem;\r\n  margin-bottom: 11.33px;\n}\n.m-singer[data-v-4947c54c]::after, .m-singer[data-v-4947c54c]::before {\r\n  content: \"\";\r\n  background: #b3b5b4;\r\n  height: 1px;\r\n  width: 5%;\n}\n.m-effect[data-v-4947c54c] {\r\n  width: 40%;\r\n  height: 29px;\r\n  margin: 0 auto;\n}\n.m-effect uni-view[data-v-4947c54c] {\r\n  border: 1px solid #FFFFFF;\r\n  border-radius: 5px;\n}\n.m-effect uni-text[data-v-4947c54c] {\r\n  font-size: 0.96rem;\n}\n.m-effect uni-image[data-v-4947c54c] {\r\n  width: 5.66px;\r\n  height: 3.33px;\n}\n.m-cover[data-v-4947c54c] {\r\n  height: 282.66px;\n}\n.m-cover uni-image[data-v-4947c54c] {\r\n  width: 262px;\r\n  height: 262px;\r\n  border-radius: 50%;\r\n  /* 这里需要根据背景变化 */\r\n  border: 4px solid #484837;\n}\n.m-lyric[data-v-4947c54c] {\r\n  height: 68.66px;\r\n  font-size: 1.2rem;\n}\n.m-lyric uni-view[data-v-4947c54c] {\r\n  width: 100%;\n}\n.m-lyric uni-view uni-image[data-v-4947c54c] {\r\n  width: 18px;\r\n  height: 18px;\n}\n.is-sing[data-v-4947c54c] {\r\n  height: 20px;\n}\n.is-sing uni-view[data-v-4947c54c] {\r\n  width: 6px;\r\n  height: 6px;\r\n  border-radius: 50%;\r\n  margin: 0px 2px;\n}\n.interactive[data-v-4947c54c] {\r\n  height: 31.33px;\n}\n.interactive uni-image[data-v-4947c54c] {\r\n  width: 18.66px;\r\n  height: 18.66px;\n}\n.loading[data-v-4947c54c] {\r\n  height: 29px;\n}\n.loading uni-text[data-v-4947c54c] {\r\n  font-size: 0.6rem;\n}\n.loading .loading-bar[data-v-4947c54c] {\r\n  width: 60%;\r\n  height: 1px;\r\n  background-color: #b6b2cb;\n}\n.loading .loading-bar .pass[data-v-4947c54c] {\r\n  width: 50%;\r\n  height: 1px;\r\n  background-color: #2190f3;\n}\n.loading .loading-bar .in[data-v-4947c54c] {\r\n  width: 6px;\r\n  height: 6px;\r\n  border-radius: 3px;\r\n  background-color: #ffffff;\n}\n.operation .1[data-v-4947c54c] {\r\n  width: 20px;\r\n  height: 20px;\n}\n.operation .2[data-v-4947c54c] {\r\n  width: 16px;\r\n  height: 16px;\n}\n.operation .3[data-v-4947c54c] {\r\n  width: 24px;\r\n  height: 24px;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
