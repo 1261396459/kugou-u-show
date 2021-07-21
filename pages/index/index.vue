@@ -73,7 +73,7 @@
               <view>
                 <image class="icon" src="/static/pic/index/next.png"></image>
               </view>
-              <view>
+              <view @click="toPlaying">
                 <image class="icon" src="/static/pic/index/menu.png"></image>
               </view>
             </view>
@@ -160,6 +160,11 @@
           uni.navigateTo({
             url: 'playlist'
           });
+      },
+      toPlaying(){
+        uni.navigateTo({
+          url: 'play'
+        });
       }
     }
   }
