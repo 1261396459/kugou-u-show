@@ -50,7 +50,7 @@
       </view>
       <view class="tabbar">
         <view class="left">
-          <view>
+          <view @click="toPlaying">
             <image class="cover" :src="playing.cover"></image>
           </view>
         </view>

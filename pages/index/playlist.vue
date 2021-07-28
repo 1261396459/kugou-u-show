@@ -36,7 +36,7 @@
       </view>
       <view class="tabbar-seat"></view>
       <view class="tabbar">
-        <view>
+        <view @click="toBack">
           <image src="../../static/pic/playlist/music.png"></image>
           <text>音乐</text>
         </view>
@@ -95,7 +95,11 @@
         isplay: -1
       }
     },
-    methods:{}
+    methods:{
+      toBack() {
+        uni.navigateBack();
+      }
+    }
   }
 </script>
 

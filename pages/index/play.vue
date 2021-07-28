@@ -6,7 +6,7 @@
     </view>
     <view class="content">
       <view class="navigatebar">
-        <image class="back" src="/static/pic/play/back.png"></image>
+        <image class="back" src="/static/pic/play/back.png" @click="toBack"></image>
         <text class="m-name">{{ playingMusic.title }}</text>
       </view>
       <view class="m-singer"><text>{{ playingMusic.singer }}</text></view>
@@ -83,7 +83,7 @@
         playingMusic: {
           title: '日落大道-歌手2017第一季第十期上分卡华丽丽',
           singer: '梁博',
-          coverUrl: '/static/pic1/play/disc.jpg',
+          coverUrl: '/static/pic/play/disc.png',
           lysic: ['我们寻找着在这条路的中间','我们迷失着在这条路的两端'],
           length: 276,
           islike: false,
@@ -94,13 +94,17 @@
         otherSelect: ['#ffffff','#abb5bb']
       }
     },
-    methods:{}
+    methods:{
+      toBack() {
+        uni.navigateBack();
+      }
+    }
   }
 </script>
 
 <style scoped lang="scss">
   @import '~@/tool.scss';
-  $bgi: '/static/pic1/play/disc.jpg';
+  $bgi: '/static/pic/play/disc.png';
   .bg {
     @include i-background-app($bgi);
     filter: blur(8px);
