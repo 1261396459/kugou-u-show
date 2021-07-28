@@ -6,7 +6,7 @@
     </view>
     <view class="content">
       <view class="navigatebar">
-        <image class="menu" src="/static/pic/index/hamburger.png"></image>
+        <image class="menu" src="/static/pic/index/menu.png"></image>
         <view><text class="gri">听</text></view>
         <view><text>看</text></view>
         <view><text>唱</text></view>
@@ -43,7 +43,7 @@
       </view>
       <view class="advitisement">
         <view class="left">
-          <image class="icon" src="/static/pic/index/sound.png"></image>
+          <image class="icon" src="/static/pic/index/voice.png"></image>
           <text class="alt">推广</text>
         </view>
         <text class="report">装了这个app不用再去ktv</text>
@@ -74,7 +74,7 @@
                 <image class="icon" src="/static/pic/index/next.png"></image>
               </view>
               <view @click="toPlaying">
-                <image class="icon" src="/static/pic/index/menu.png"></image>
+                <image class="icon" src="/static/pic/index/detail.png"></image>
               </view>
             </view>
           </view>
@@ -111,23 +111,23 @@
             title: '喜欢·歌单',
             num: 3
           },          {
-            iconUrl: '/static/pic/index/dwonload.png',
+            iconUrl: '/static/pic/index/download.png',
             title: '下载',
             num: 2
           },          {
-            iconUrl: '/static/pic/index/clock.png',
+            iconUrl: '/static/pic/index/time.png',
             title: '最近',
             num: 100
           }
         ],
         allMusic: [
           {
-            iconUrl: '/static/pic/index/lib.png',
+            iconUrl: '/static/pic/index/note.png',
             bgc: '#06b062',
             title: '乐库'
           },
           {
-            iconUrl: '/static/pic/index/list.png',
+            iconUrl: '/static/pic/index/work.png',
             bgc: '#067ab0',
             title: '歌单'
           },
@@ -147,7 +147,7 @@
             title: '每日推荐'
           },
           {
-            iconUrl: '/static/pic/index/speech.png',
+            iconUrl: '/static/pic/index/micro.png',
             bgc: '#4be22d',
             title: '听歌识曲'
           },
@@ -172,7 +172,7 @@
 
 <style scoped lang="scss">
   @import '~@/tool.scss';
-  $bgi: '/static/pic/index/bg2.jpg';
+  $bgi: '/static/pic/index/bgi.jpg';
   .bg {
     @include i-background-app($bgi);
   }
@@ -382,7 +382,7 @@
           @extend .i-row-horizontal-around;
           
           .icon{
-            width: 11px; height: 11px;
+            width: 20px; height: 20px;
           }
         }
       }

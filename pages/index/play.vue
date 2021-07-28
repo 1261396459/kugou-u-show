@@ -6,21 +6,21 @@
     </view>
     <view class="content">
       <view class="navigatebar">
-        <image class="back" src="/static/pic/play/Left.png"></image>
+        <image class="back" src="/static/pic/play/back.png"></image>
         <text class="m-name">{{ playingMusic.title }}</text>
       </view>
       <view class="m-singer"><text>{{ playingMusic.singer }}</text></view>
       <view class="m-effect">
         <view>
           <text>标准</text>
-          <image src="/static/pic/play/Down.png"></image>
+          <image src="/static/pic/play/down.png"></image>
         </view>
         <view>
           <text>音效</text>
         </view>
         <view>
           <text>封面</text>
-          <image src="/static/pic/play/Down.png"></image>
+          <image src="/static/pic/play/down.png"></image>
         </view>
       </view>
       <view class="m-cover">
@@ -35,7 +35,7 @@
         <view>
           <image></image>
           <text>{{ playingMusic.lysic[1] }}</text>
-          <image src="/static/pic/play/barrage.png"></image>
+          <image src="/static/pic/play/note.png"></image>
         </view>
       </view>
       <view class="is-sing">
@@ -45,7 +45,7 @@
       <view class="interactive">
         <image :src="playingMusic.islike?'../../static/pic/play/like.png':'../../static/pic/play/dislike.png'"></image>
         <image src="../../static/pic/play/download.png"></image>
-        <image src="../../static/pic/play/comment.png"></image>
+        <image src="../../static/pic/play/comments.png"></image>
         <image src="../../static/pic/play/share.png"></image>
         <image src="../../static/pic/play/more.png"></image>
       </view>
@@ -58,7 +58,7 @@
         <text class="all">{{ playingMusic.length }}</text>
       </view>
       <view class="operation">
-        <image src="/static/pic/play/darrow.png" class="a"></image>
+        <image src="/static/pic/play/playway.png" class="a"></image>
         <view>
           <view class="b">
             <image src="/static/pic/play/last.png"></image>
@@ -70,7 +70,7 @@
             <image src="/static/pic/play/next.png"></image>
           </view>          
         </view>
-        <image src="/static/pic/play/menu.png" class="a"></image>
+        <image src="/static/pic/play/detail.png" class="a"></image>
       </view>
     </view>
   </view>
@@ -83,7 +83,7 @@
         playingMusic: {
           title: '日落大道-歌手2017第一季第十期上分卡华丽丽',
           singer: '梁博',
-          coverUrl: '/static/pic/play/disc.jpg',
+          coverUrl: '/static/pic1/play/disc.jpg',
           lysic: ['我们寻找着在这条路的中间','我们迷失着在这条路的两端'],
           length: 276,
           islike: false,
@@ -100,7 +100,7 @@
 
 <style scoped lang="scss">
   @import '~@/tool.scss';
-  $bgi: '/static/pic/play/disc.jpg';
+  $bgi: '/static/pic1/play/disc.jpg';
   .bg {
     @include i-background-app($bgi);
     filter: blur(8px);
@@ -149,7 +149,7 @@
       font-size: 0.96rem;
     }
     image {
-      width: 5.66px; height: 3.33px;
+      width: 6px; height: 6px;
     }
   }
   .m-cover {

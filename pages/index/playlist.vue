@@ -8,7 +8,7 @@
     </view>
     <view class="content">
       <view class="navigatebar">
-        <image src="../../static/pic/playlist/Search.png"></image>
+        <image src="../../static/pic/playlist/search.png"></image>
         <text>最近</text>
         <image src="../../static/pic/playlist/more.png"></image>
       </view>
@@ -41,19 +41,19 @@
           <text>音乐</text>
         </view>
         <view>
-          <image src="../../static/pic/playlist/musiclib.png"></image>
+          <image src="../../static/pic/playlist/listen.png"></image>
           <text>音乐馆</text>
         </view>
         <view>
-          <image src="../../static/pic/playlist/kind.png"></image>
+          <image src="../../static/pic/playlist/more.png"></image>
           <text>音乐分类</text>
         </view>
         <view>
-          <image src="../../static/pic/playlist/Record.png"></image>
+          <image src="../../static/pic/playlist/mv.png"></image>
           <text>我的mv</text>
         </view>
         <view>
-          <image src="../../static/pic/playlist/Profile.png"></image>
+          <image src="../../static/pic/playlist/personal.png"></image>
           <text>个人中心</text>
         </view>
       </view>
@@ -101,7 +101,7 @@
 
 <style scoped lang="scss">
   @import '~@/tool.scss';
-  $bgi: '/static/pic/playlist/bg2.jpg';
+  $bgi: '/static/pic/playlist/bgi.jpg';
   .bg {
     @include i-background-app($bgi);
   }

@@ -6,7 +6,7 @@
     </view>
     <view class="content">
       <view class="navigatebar">
-        <image class="close" src="/static/pic/login/close.png"></image>
+        <image class="close" src="/static/pic/login/exit.png"></image>
       </view>
       <view class="logo-text">
         <image class="mid-logo" src="/static/logo.png"></image>
@@ -58,7 +58,7 @@
 
 <style scoped lang="scss">
   @import '~@/tool.scss';
-  $bgi: '/static/pic/login/bg1.jpg';
+  $bgi: '/static/pic/login/bgi.jpg';
   .bg {
     @include i-background-app($bgi);
   }
