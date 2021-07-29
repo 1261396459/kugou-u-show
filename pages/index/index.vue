@@ -51,7 +51,7 @@
       <view class="tabbar">
         <view class="left">
           <view @click="toPlaying">
-            <image class="cover" :src="playing.curl" :style="'transform: rotate('+angle+'deg);'"></image>
+            <image class="cover" :src="list[nowMusic].mid[0].curl" :style="'transform: rotate('+angle+'deg);'"></image>
           </view>
         </view>
         <view class="right">
@@ -63,8 +63,8 @@
           </view>
           <view class="down">
             <view class="information">
-              <text class="m-name">{{ playing.title }}</text>
-              <text class="m-singer">{{ playing.singer }}</text>
+              <text class="m-name">{{ list[nowMusic].mid[0].title }}</text>
+              <text class="m-singer">{{ list[nowMusic].mid[0].singer }}</text>
             </view>
             <view class="operation">
               <view @click="pop">
@@ -101,14 +101,6 @@
         itvid: 0,
         loading: 0,
         nowMusic: 0,
-        playing: {
-          _id: 1,
-          curl: '/static/pic/index/disc.jpg',
-          surl: '',
-          lurl: '',
-          name: '日落大道歌手2017第阿双方均按法律奇偶发哈',
-          title: '梁博'
-        },
         myMusic: [
           {
             iconUrl: '/static/pic/index/pc.png',
@@ -175,31 +167,20 @@
           url: 'play'
         });
       },
-      getMe() {
+      initMe() {
         this.me.nickname = getApp().globalData.uname;
         this.me.uid = getApp().globalData.uid;
       },
-      getMusicList(){
+      initMusicList(){
         this.$database.get(
-          'listen',
+          'listen, musicList',
           {
-            uid: this.me.uid
+            uid: getApp().globalData.uid
           },
           (data)=>{
             this.list = data;
-            this.getMusic(this.list[this.nowMusic].mid);
-          }
-        );
-      },
-      getMusic(mid){
-        this.$database.get(
-          'musicList',
-          {           
-            _id: mid
-          },
-          (data)=>{
-            this.playing = data[0];
-            this.$audio.src = this.playing.surl;
+            this.$audio.src = this.list[this.nowMusic].mid[0].surl;
+            console.log(data);
           }
         );
       },
@@ -226,13 +207,24 @@
         }
         this.loading = 0;
         this.nowMusic = (this.nowMusic+1)%this.list.length;
-        this.getMusic(this.list[this.nowMusic].mid);
+        getApp().globalData.nowMusic = this.nowMusic;
+        this.$audio.src = this.list[this.nowMusic].mid[0].surl;
       }
     },
-    mounted() {
-      this.getMe();
-      this.getMusicList();
-      
+    mounted() {     
+      this.initMe();
+      this.initMusicList();
+    },
+    onShow() {
+      this.nowMusic = getApp().globalData.nowMusic;
+      this.loading = this.$audio.currentTime/this.$audio.duration*100;
+      if(this.$audio.paused){
+        this.isplay = true;
+        clearInterval(this.itvid);
+      }
+      else{
+        this.isplay = false;
+      }
     }
   }
 </script>
@@ -412,7 +404,7 @@
           @extend .i-row-vertical-center;
           
           .pass{
-            width: 50%; height: 1px;
+            width: 0%; height: 1px;
             background-color: #2190f3;
           }     
           .in{

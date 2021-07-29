@@ -10,7 +10,7 @@
       <view class="navigatebar">
         <image src="../../static/pic/playlist/search.png"></image>
         <text>最近</text>
-        <image src="../../static/pic/playlist/more.png"></image>
+        <image src="../../static/pic/playlist/selector.png"></image>
       </view>
       <view class="rank-way">
         <text>单曲</text>
@@ -20,14 +20,14 @@
         <text>歌词本</text>
       </view>
       <view class="music-list">
-        <view class="music-item" v-for="item,index in musicList">
+        <view class="music-item" v-for="item,index in list">
           <view class="isplay">
-            <image v-if="isplay != index" src="/static/pic/playlist/pause.png"></image>
-            <image v-else src="/static/pic/playlist/play.png"></image>
+            <image v-if="isplay == index" src="/static/pic/playlist/pause.png" @click="pauset(index)"></image>
+            <image v-else src="/static/pic/playlist/play.png" @click="playt(index)"></image>
           </view>
           <view class="infor">
-            <text class="title">{{ item.title }}</text>
-            <text class="singer">{{ item.singer }}</text>
+            <text class="title">{{ item.mid[0].title }}</text>
+            <text class="singer">{{ item.mid[0].singer }}</text>
           </view>
           <view class="length">
             <text>{{ item.length }}</text>
@@ -65,6 +65,7 @@
   export default {
     data() {
       return {
+        list: [],
         musicList: [
           {
             title: '樱花樱花想见你',
@@ -98,6 +99,39 @@
     methods:{
       toBack() {
         uni.navigateBack();
+      },
+      initList() {
+        this.$database.get(
+          'listen, musicList',
+          {
+            uid: getApp().globalData.uid
+          },
+          (data)=>{
+            this.list = data;
+            console.log(data);
+          }
+        );
+      },
+      playt(id){
+        console.log(id);
+        this.isplay = id;
+        getApp().globalData.nowMusic = this.isplay;
+        this.$audio.src = this.list[this.isplay].mid[0].surl;
+        this.$audio.play();
+      },
+      pauset(id){
+        console.log(id);
+        this.isplay = -1;
+        this.$audio.pause();
+      }
+    },
+    mounted() {
+      this.initList();
+      if(this.$audio.paused){
+        ;
+      }
+      else{
+        this.isplay = getApp().globalData.nowMusic;
       }
     }
   }

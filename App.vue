@@ -11,7 +11,8 @@
 		},
     globalData: {
       "uid": "",
-      "uname": ""
+      "uname": "",
+      "nowMusic": 0
     }
 	}
 </script>
