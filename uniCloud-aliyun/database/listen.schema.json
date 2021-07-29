@@ -1,0 +1,23 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": false,
+		"update": false,
+		"delete": false
+	},
+	"properties": {
+		"_id": {
+			"description": "记录ID，系统自动生成"
+		},
+		"uid": {
+			"description": "用户标识",
+			"bsonType": "string"
+		},
+		"mid": {
+			"description": "音乐标识",
+			"bsonType": "string"
+		}
+	}
+}

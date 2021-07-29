@@ -1,0 +1,35 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": false,
+		"update": false,
+		"delete": false
+	},
+	"properties": {
+		"_id": {
+			"description": "音乐ID，系统自动生成"
+		},
+		"title": {
+			"description": "歌名",
+			"bsonType": "string"
+		},
+		"singer": {
+			"description": "歌手",
+			"bsonType": "string"
+		},
+		"curl": {
+			"description": "封面",
+			"bsonType": "string"
+		},
+		"surl": {
+			"description": "乐曲",
+			"bsonType": "string"
+		},
+		"lurl": {
+			"description": "歌词",
+			"bsonType": "string"
+		}
+	}
+}
