@@ -6,7 +6,7 @@
     </view>
     <view class="content">
       <view class="navigatebar">
-        <image class="close" src="/static/pic/login/exit.png"></image>
+        <image class="close" src="/static/pic/login/exit.png" v-show="toInputShow != 0" @click="cancel"></image>
       </view>
       <view class="logo-text">
         <image class="mid-logo" src="/static/logo.png"></image>
@@ -15,9 +15,15 @@
           <view class="mtext" style="font-size: 0.6rem; font-family: '华文细黑';"><text>音乐总有新玩法</text></view>
         </view>
       </view>
+      <view class="input" >
+        <view v-show="toInputShow != 0">
+          <input type="text" v-model="acc" placeholder="帐号"/>
+          <input type="text" v-model="pass" placeholder="密码"/>
+        </view>
+      </view>
       <view class="event">
-        <button class="login-btn" style="background-color: #0c96e6;" @click="login"><text>登录</text></button>
-        <button class="login-btn" style="background-color: #0ce6c5;"><text>注册</text></button>
+        <button class="login-btn" style="background-color: #0c96e6;" @click="toLogin" v-show="toInputShow != 2"><text>登录</text></button>
+        <button class="login-btn" style="background-color: #0ce6c5;" @click="toSignin" v-show="toInputShow != 1"><text>注册</text></button>
       </view>
       <view class="login-way-text"><text>其他登录方式</text></view>
       <view class="login-way-select">
@@ -43,14 +49,56 @@
   export default {
     data() {
       return {
-        
+        toInputShow: 0,
+        acc: "test",
+        pass: "123"
       }
     },
     methods: {
-      login() {
-        uni.navigateTo({
-          url: 'index'
-        })
+      async _login() {
+        let acc = this.acc;
+        let pass = this.pass;
+        console.log(acc, pass);
+        this.$database.get(
+          'users',
+          {
+            username: acc,
+            password: pass
+          },
+          function(data){
+            if(data.length == 0){
+              uni.showToast({
+                icon: 'none',
+                title: '帐号或密码错误'
+              })
+            }
+            else{
+              const rm = data[0];
+              getApp().globalData.uid = rm._id;
+              getApp().globalData.uname = rm.username;
+              uni.navigateTo({
+                url: 'index'
+              });
+            }
+          }
+         )
+      },
+      toLogin() {
+        if(this.toInputShow==0)
+          this.toInputShow=1;
+        else {
+          this._login();
+        }
+      },
+      toSignin() {
+        if(this.toInputShow==0)
+          this.toInputShow=2;
+        else {
+          
+        }        
+      },
+      cancel() {
+        this.toInputShow=0;
       }
     }
   }
@@ -93,8 +141,19 @@
       }
     }
   }
+  .input {
+    height: 183px; 
+    @extend .i-col-horizontal-center,.i-col-vertical-center;
+    
+    input {
+      width: 248px; height: 35px;
+      text-indent:10px;
+      border-bottom: 2px #FFFFFF solid;
+      margin-top: 10px;
+    }
+  }
   .event {
-    margin-top: 183px;
+    height: 49px;
     
     .login-btn {
       color: #FFFFFF;
