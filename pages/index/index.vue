@@ -51,26 +51,26 @@
       <view class="tabbar">
         <view class="left">
           <view @click="toPlaying">
-            <image class="cover" :src="playing.cover"></image>
+            <image class="cover" :src="playing.curl" :style="'transform: rotate('+angle+'deg);'"></image>
           </view>
         </view>
         <view class="right">
           <view class="up">
             <view class="loading">
-              <view class="pass"></view>
+              <view class="pass" :style="{width: loading+'%'}"></view>
               <view class="in"></view>
             </view>
           </view>
           <view class="down">
             <view class="information">
-              <text class="m-name">{{ playing.m_name }}</text>
-              <text class="m-singer">{{ playing.m_singer }}</text>
+              <text class="m-name">{{ playing.title }}</text>
+              <text class="m-singer">{{ playing.singer }}</text>
             </view>
             <view class="operation">
-              <view>
-                <image class="icon" src="/static/pic/index/play.png"></image>
+              <view @click="pop">
+                <image class="icon" :src="isplay?'/static/pic/index/play.png':'/static/pic/index/pause.png'"></image>
               </view>
-              <view>
+              <view @click="next">
                 <image class="icon" src="/static/pic/index/next.png"></image>
               </view>
               <view @click="toPlaying">
@@ -89,16 +89,25 @@
     data() {
       return {
         me: {
+          uid: '',
           avatarUrl: '/static/pic/index/avatar.png',
           nickname: '胡萝北',
           level: 5,
           duration: 15302
         },
+        list: [],
+        isplay: this.$audio.paused,
+        angle: 0,
+        itvid: 0,
+        loading: 0,
+        nowMusic: 0,
         playing: {
-          id: 1,
-          cover: '/static/pic/index/disc.jpg',
-          m_name: '日落大道歌手2017第阿双方均按法律奇偶发哈',
-          m_singer: '梁博'
+          _id: 1,
+          curl: '/static/pic/index/disc.jpg',
+          surl: '',
+          lurl: '',
+          name: '日落大道歌手2017第阿双方均按法律奇偶发哈',
+          title: '梁博'
         },
         myMusic: [
           {
@@ -165,7 +174,65 @@
         uni.navigateTo({
           url: 'play'
         });
+      },
+      getMe() {
+        this.me.nickname = getApp().globalData.uname;
+        this.me.uid = getApp().globalData.uid;
+      },
+      getMusicList(){
+        this.$database.get(
+          'listen',
+          {
+            uid: this.me.uid
+          },
+          (data)=>{
+            this.list = data;
+            this.getMusic(this.list[this.nowMusic].mid);
+          }
+        );
+      },
+      getMusic(mid){
+        this.$database.get(
+          'musicList',
+          {           
+            _id: mid
+          },
+          (data)=>{
+            this.playing = data[0];
+            this.$audio.src = this.playing.surl;
+          }
+        );
+      },
+      pop(){
+        if(this.$audio.paused){         
+          this.$audio.play();
+          this.isplay = false;
+          this.itvid = setInterval(()=>{
+            this.angle += 1;
+            this.loading = this.$audio.currentTime/this.$audio.duration*100;
+          },10);
+        }
+        else{
+          this.$audio.pause();
+          this.isplay = true;
+          clearInterval(this.itvid);
+        }
+      },
+      next(){
+        if(!this.$audio.paused){
+          this.$audio.pause();
+          this.isplay = true;
+          clearInterval(this.itvid);
+        }
+        this.loading = 0;
+        this.nowMusic = (this.nowMusic+1)%this.list.length;
+        this.getMusic(this.list[this.nowMusic].mid);
       }
+    },
+    mounted() {
+      this.getMe();
+      this.getMusicList();
+      
     }
   }
 </script>
