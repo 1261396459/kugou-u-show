@@ -13,10 +13,12 @@
 		},
 		"uid": {
 			"description": "用户标识",
+			"foreignKey": "users._id",
 			"bsonType": "string"
 		},
 		"mid": {
 			"description": "音乐标识",
+			"foreignKey": "musicList._id",
 			"bsonType": "string"
 		}
 	}
