@@ -8,7 +8,11 @@
 		},
 		onHide: function() {
 			console.log('App Hide')
-		}
+		},
+    globalData: {
+      "uid": "",
+      "uname": ""
+    }
 	}
 </script>
 
