@@ -50,8 +50,8 @@
       </view>
       <view class="tabbar">
         <view class="left">
-          <view @click="toPlaying">
-            <image class="cover" :src="list[nowMusic].mid[0].curl" :style="'transform: rotate('+angle+'deg);'"></image>
+          <view @click="toPlaying">   
+            <image class="cover anplay" :class="{anpause: ispause}" :src="list[nowMusic].mid[0].curl"></image>
           </view>
         </view>
         <view class="right">
@@ -98,7 +98,6 @@
         },
         list: [],
         ispause: this.$audio.paused,
-        angle: 0,
         itvid: 0,
         loading: 0,
         nowMusic: 0,
@@ -190,9 +189,8 @@
           this.$audio.play();
           this.ispause = false;
           this.itvid = setInterval(()=>{
-            this.angle += 1;
             this.loading = this.$audio.currentTime/this.$audio.duration*100;
-          },10);
+          },100);
         }
         else{
           this.$audio.pause();
@@ -227,9 +225,8 @@
       else{
         this.ispause = false;
         this.itvid = setInterval(()=>{
-          this.angle += 1;
           this.loading = this.$audio.currentTime/this.$audio.duration*100;
-        },10);
+        },100);
       }
     },
     onHide() {

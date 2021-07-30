@@ -26,7 +26,7 @@
         </view>
       </view>
       <view class="m-cover">
-        <image :src="list[nowMusic].mid[0].curl" :style="'transform: rotate('+angle+'deg);'"></image>
+        <image class="anplay" :src="list[nowMusic].mid[0].curl" :class="{anpause: ispause}"></image>
       </view>
       <view class="m-lyric">
         <view>
@@ -88,7 +88,6 @@
         nowMusic: 0,
         ispause: true,
         itvid: 0,
-        angle: 0,
         loading: 0,
         curL: '00:00',
         durL: '04:00',
@@ -118,7 +117,6 @@
       },
       initMusic(){
         this.ispause = this.$audio.paused;
-        this.angle = this.$audio.currentTime*100%360;
         this.loading = this.$audio.currentTime/this.$audio.duration*100;
         this.durL = this.getTime(this.$audio.duration);       
       },
@@ -167,7 +165,6 @@
       playMusic(){        
         this.ispause = false;
         this.itvid = setInterval(()=>{
-          this.angle += 1;
           this.loading = this.$audio.currentTime/this.$audio.duration*100;
           this.curL = this.getTime(this.$audio.currentTime);
           if(parseFloat(this.lysic[this.nowLine].time) <= this.$audio.currentTime){
@@ -176,7 +173,7 @@
             this.second = this.lysic[this.nowLine].text;
             // console.log(this.lysic[this.nowLine].text);
           }
-        },10);
+        },100);
       },
       pauseMusic(){  
         this.ispause = true;

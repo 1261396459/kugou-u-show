@@ -2,3 +2,15 @@
   height: var(--status-bar-height);
   width: 100%;
 }
+
+// 旋转和暂停的动画效果
+@-webkit-keyframes rotation{
+  from{transform: rotate(0deg);}
+  to{transform: rotate(360deg);}
+}
+.anplay {
+  animation: rotation 8s infinite linear;
+}
+.anpause {
+  animation-play-state: paused;
+}
