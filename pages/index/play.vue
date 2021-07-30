@@ -1,15 +1,17 @@
 <template>
   <view class="main">
-    <view class="bg"></view>
+    <page-meta></page-meta>
+    <image class="bg1" :src="list[nowMusic].mid[0].curl"></image>
+    <view class="bg2"></view>
     <view class="status_bar">
       <!-- 这里是状态栏 -->
     </view>
     <view class="content">
       <view class="navigatebar">
         <image class="back" src="/static/pic/play/back.png" @click="toBack"></image>
-        <text class="m-name">{{ playingMusic.title }}</text>
+        <text class="m-name">{{ list[nowMusic].mid[0].title }}</text>
       </view>
-      <view class="m-singer"><text>{{ playingMusic.singer }}</text></view>
+      <view class="m-singer"><text>{{ list[nowMusic].mid[0].singer }}</text></view>
       <view class="m-effect">
         <view>
           <text>标准</text>
@@ -24,17 +26,17 @@
         </view>
       </view>
       <view class="m-cover">
-        <image :src="playingMusic.coverUrl"></image>
+        <image :src="list[nowMusic].mid[0].curl" :style="'transform: rotate('+angle+'deg);'"></image>
       </view>
       <view class="m-lyric">
         <view>
           <image></image>
-          <text>{{ playingMusic.lysic[0] }}</text>
+          <text>{{ first }}</text>
           <image src="/static/pic/play/micro.png"></image>
         </view>
         <view>
           <image></image>
-          <text>{{ playingMusic.lysic[1] }}</text>
+          <text>{{ second }}</text>
           <image src="/static/pic/play/note.png"></image>
         </view>
       </view>
@@ -43,30 +45,30 @@
         <view class="other"  :style="'background-color:'+otherSelect[1-other]"></view>
       </view>
       <view class="interactive">
-        <image :src="playingMusic.islike?'../../static/pic/play/like.png':'../../static/pic/play/dislike.png'"></image>
+        <image src="../../static/pic/play/like.png"></image>
         <image src="../../static/pic/play/download.png"></image>
         <image src="../../static/pic/play/comments.png"></image>
         <image src="../../static/pic/play/share.png"></image>
         <image src="../../static/pic/play/more.png"></image>
       </view>
       <view class="loading">
-        <text class="now">{{ playNow*playingMusic.length }}</text>
+        <text class="now">{{ curL }}</text>
         <view class="loading-bar">
-          <view class="pass"></view>
+          <view class="pass" :style="{width: loading+'%'}"></view>
           <view class="in"></view>
         </view>
-        <text class="all">{{ playingMusic.length }}</text>
+        <text class="all">{{ durL }}</text>
       </view>
       <view class="operation">
         <image src="/static/pic/play/playway.png" class="a"></image>
         <view>
-          <view class="b">
+          <view class="b" @click="lastMusic()">
             <image src="/static/pic/play/last.png"></image>
           </view>
-          <view class="c">
-            <image src="/static/pic/play/play.png"></image>
+          <view class="c" @click="pop">
+            <image :src="ispause?'/static/pic/play/play.png':'/static/pic/play/pause.png'"></image>
           </view>
-          <view class="b">
+          <view class="b" @click="nextMusic()">
             <image src="/static/pic/play/next.png"></image>
           </view>          
         </view>
@@ -80,23 +82,155 @@
   export default {
     data() {
       return {
-        playingMusic: {
-          title: '日落大道-歌手2017第一季第十期上分卡华丽丽',
-          singer: '梁博',
-          coverUrl: '/static/pic/play/disc.png',
-          lysic: ['我们寻找着在这条路的中间','我们迷失着在这条路的两端'],
-          length: 276,
-          islike: false,
-          commentsNum: 1001
-        },
-        playNow: 0.4,
+        list:[],
+        lysic: [],
+        nowMusic: 0,
+        ispause: true,
+        itvid: 0,
+        angle: 0,
+        loading: 0,
+        curL: '00:00',
+        durL: '04:00',
         other: 0,
-        otherSelect: ['#ffffff','#abb5bb']
+        otherSelect: ['#ffffff','#abb5bb'],
+        first: '',
+        second: '',
+        nowLine: 1,
       }
     },
     methods:{
       toBack() {
         uni.navigateBack();
+      },
+      initList() {
+        this.$database.get(
+          'listen, musicList',
+          {
+            uid: getApp().globalData.uid
+          },
+          (data)=>{
+            this.list = data;
+            console.log(data);
+            this.initLysic();
+          }
+        );
+      },
+      initMusic(){
+        this.ispause = this.$audio.paused;
+        this.angle = this.$audio.currentTime*100%360;
+        this.loading = this.$audio.currentTime/this.$audio.duration*100;
+        this.durL = this.getTime(this.$audio.duration);       
+      },
+      initLysic(){
+        this.nowLine = 1;
+        this.first='';
+        this.second='';
+        this.lysic=[];
+        uni.request({
+          url: this.list[this.nowMusic].mid[0].lurl,
+          success:(res)=>{
+            if(res.statusCode == 200){
+              const rm = res.data;// 获取的是字符串类型的歌词
+              const temp = rm.replace(/(\n\[|\r\n\[|\]|\[)/g,'$-$').split('$-$');
+              let flag = true;
+              for(let i=0;i<temp.length;i++){
+                if(flag){
+                  if(temp[i] == 'offset:0'){
+                    flag=false;
+                    i+=1;
+                  }
+                }
+                else{
+                  const tt = temp[i].split(':');
+                  let ttt = parseInt(tt[0]*60) + parseFloat(tt[1]); 
+                  this.lysic.push({
+                    time: ttt,
+                    text: temp[i+1]
+                  });
+                  i+=1;
+                }
+     
+              }
+              this.first = this.lysic[0].text;
+              this.second = this.lysic[1].text;
+              console.log(this.lysic);
+              return;
+            }
+            console.log('err',res);
+          },
+          fail(err) {
+            console.log(err);
+          }
+        })
+      },
+      playMusic(){        
+        this.ispause = false;
+        this.itvid = setInterval(()=>{
+          this.angle += 1;
+          this.loading = this.$audio.currentTime/this.$audio.duration*100;
+          this.curL = this.getTime(this.$audio.currentTime);
+          if(parseFloat(this.lysic[this.nowLine].time) <= this.$audio.currentTime){
+            this.nowLine+=1;
+            this.first = this.second;
+            this.second = this.lysic[this.nowLine].text;
+            // console.log(this.lysic[this.nowLine].text);
+          }
+        },10);
+      },
+      pauseMusic(){  
+        this.ispause = true;
+        clearInterval(this.itvid);
+      },
+      pop(){
+        if(this.$audio.paused){         
+          this.playMusic();
+          this.$audio.play();
+          this.durL = this.getTime(this.$audio.duration);
+        }
+        else{
+          this.pauseMusic();
+          this.$audio.pause();
+        }
+      },
+      nextMusic(){
+        this.pauseMusic();
+        this.$audio.pause();
+        this.nowMusic = (this.nowMusic+1)%this.list.length;
+        getApp().globalData.nowMusic = this.nowMusic;
+        this.$audio.src = this.list[this.nowMusic].mid[0].surl;
+        this.initLysic();
+        this.loading = 0;     
+        this.curL = '00:00';
+        
+      },
+      lastMusic(){
+        this.pauseMusic();
+        this.$audio.pause();
+        this.nowMusic = (this.nowMusic+this.list.length-1)%this.list.length;
+        getApp().globalData.nowMusic = this.nowMusic;
+        this.$audio.src = this.list[this.nowMusic].mid[0].surl;
+        this.initLysic();       
+        this.loading = 0;      
+        this.curL = '00:00';
+        
+      },
+      getTime(t){
+        const nt = t;
+        const sec = parseInt(nt%60)+'';
+        const min = parseInt(nt/60)+'';  
+        return Array(3-min.length).join('0')+min+':'+Array(3-sec.length).join('0')+sec;
+      }
+    },
+    mounted() {
+      this.initList();
+      this.nowMusic = getApp().globalData.nowMusic;   
+      this.initMusic();
+      
+      if(this.ispause){
+        this.pauseMusic();
+      }
+      else{
+        this.playMusic();
       }
     }
   }
@@ -104,10 +238,23 @@
 
 <style scoped lang="scss">
   @import '~@/tool.scss';
-  $bgi: '/static/pic/play/disc.png';
-  .bg {
-    @include i-background-app($bgi);
+  .bg1 {
+    // 第一层背景，封面模糊
+    @extend .i-fill-container;
+    position: fixed;
+    top: auto;
+    left: auto;
+    z-index: -2;
     filter: blur(8px);
+  }
+  .bg2 {
+    // 第二层背景，中间向上下渐变
+    @extend .i-fill-container;
+    position: fixed;
+    top: auto;
+    left: auto;
+    z-index: -1;
+    background: linear-gradient(to top, #294266 0%, #2a3a3a33 50%, #2f3f3f 100%);
   }
   .content {
     font-family: '华文楷体';
@@ -178,6 +325,11 @@
       
       image {
         width: 18px; height: 18px;
+      }     
+      text {
+        width: 60%;
+        white-space: nowrap;
+        overflow:hidden;
       }
     }
   }
