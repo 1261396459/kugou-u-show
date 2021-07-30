@@ -83,7 +83,17 @@
   export default {
     data() {
       return {
-        list:[],
+        list:[
+          {
+            mid: [
+              {
+                title: '',
+                singer: '',
+                curl: ''
+              }
+            ]
+          }
+        ],
         lysic: [],
         nowMusic: 0,
         ispause: true,
@@ -251,8 +261,8 @@
     position: fixed;
     top: auto;
     left: auto;
-    z-index: -1;
-    background: linear-gradient(to top, #294266 0%, #2a3a3a33 50%, #2f3f3f 100%);
+    z-index: -1;   
+    background: linear-gradient(to top, rgba(41,66,102,1) 0%, rgba(42,58,58,0.33) 50%, rgba(47,63,63,1) 100%);
   }
   .content {
     font-family: '华文楷体';

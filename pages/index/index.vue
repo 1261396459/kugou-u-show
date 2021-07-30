@@ -96,7 +96,17 @@
           level: 5,
           duration: 15302
         },
-        list: [],
+        list: [
+          {
+            mid: [
+              {
+                title: '',
+                singer: '',
+                curl: ''
+              }
+            ]
+          }
+        ],
         ispause: this.$audio.paused,
         itvid: 0,
         loading: 0,
