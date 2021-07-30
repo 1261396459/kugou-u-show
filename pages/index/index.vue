@@ -68,7 +68,8 @@
             </view>
             <view class="operation">
               <view @click="pop">
-                <image class="icon" :src="isplay?'/static/pic/index/play.png':'/static/pic/index/pause.png'"></image>
+                <image v-show="ispause" class="icon" src="/static/pic/index/play.png"></image>
+                <image v-show="!ispause" class="icon" src="/static/pic/index/pause.png"></image>
               </view>
               <view @click="next">
                 <image class="icon" src="/static/pic/index/next.png"></image>
@@ -96,7 +97,7 @@
           duration: 15302
         },
         list: [],
-        isplay: this.$audio.paused,
+        ispause: this.$audio.paused,
         angle: 0,
         itvid: 0,
         loading: 0,
@@ -187,7 +188,7 @@
       pop(){
         if(this.$audio.paused){         
           this.$audio.play();
-          this.isplay = false;
+          this.ispause = false;
           this.itvid = setInterval(()=>{
             this.angle += 1;
             this.loading = this.$audio.currentTime/this.$audio.duration*100;
@@ -195,14 +196,14 @@
         }
         else{
           this.$audio.pause();
-          this.isplay = true;
+          this.ispause = true;
           clearInterval(this.itvid);
         }
       },
       next(){
         if(!this.$audio.paused){
           this.$audio.pause();
-          this.isplay = true;
+          this.ispause = true;
           clearInterval(this.itvid);
         }
         this.loading = 0;
@@ -218,13 +219,21 @@
     onShow() {
       this.nowMusic = getApp().globalData.nowMusic;
       this.loading = this.$audio.currentTime/this.$audio.duration*100;
+      this.ispause = this.$audio.paused;
       if(this.$audio.paused){
-        this.isplay = true;
+        this.ispause = true;
         clearInterval(this.itvid);
       }
       else{
-        this.isplay = false;
+        this.ispause = false;
+        this.itvid = setInterval(()=>{
+          this.angle += 1;
+          this.loading = this.$audio.currentTime/this.$audio.duration*100;
+        },10);
       }
+    },
+    onHide() {
+      clearInterval(this.itvid);
     }
   }
 </script>

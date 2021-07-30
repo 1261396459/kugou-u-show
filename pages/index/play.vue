@@ -66,7 +66,8 @@
             <image src="/static/pic/play/last.png"></image>
           </view>
           <view class="c" @click="pop">
-            <image :src="ispause?'/static/pic/play/play.png':'/static/pic/play/pause.png'"></image>
+            <image v-show="ispause" src="/static/pic/play/play.png"></image>
+            <image v-show="!ispause" src="/static/pic/play/pause.png"></image>
           </view>
           <view class="b" @click="nextMusic()">
             <image src="/static/pic/play/next.png"></image>
