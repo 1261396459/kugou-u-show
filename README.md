@@ -14,8 +14,8 @@
 | 测试移动终端  | COL-AL1-10(华为荣耀10)  Android-10|
 
 ## 打包
-[工程项目/unpackage/release/__UNI__EB967F3__20210730190654](./unpackage/release/__UNI__EB967F3__20210730190654)
-[网络下载链接](https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ac0ab413-d6ce-4706-a0d7-812977463aaf/ad193833-71ee-42ca-9969-85b690a4297d.apk)
+[工程项目/unpackage/release/__UNI__EB967F3__20210731171941.apk](./unpackage/release/__UNI__EB967F3__20210731171941.apk)
+[网络下载链接](https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ac0ab413-d6ce-4706-a0d7-812977463aaf/b50e4bc4-1775-4ded-8177-a2add10a0240.apk)
 
 ## 补充说明
 由于时间关系所以才做到音乐分类页面，事件还没绑定
