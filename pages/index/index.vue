@@ -27,7 +27,7 @@
         <image class="messege" src="/static/pic/index/email.png"></image>
       </view>
       <view class="my-music">
-        <view class="my-music-item" v-for="item,index in myMusic" :key="index"  @click="toPlayList(index)" v-once>
+        <view class="my-music-item" v-for="item,index in myMusic" :key="index"  @click="gotoPlaylist(index)" v-once>
           <image class="icon" :src="item.iconUrl"></image>
           <text class="alt">{{ item.title }}</text>
           <text class="num">{{ item.num }}</text>
@@ -50,8 +50,8 @@
       </view>
       <view class="tabbar">
         <view class="left">
-          <view @click="toPlaying">   
-            <image class="cover anplay" :class="{anpause: ispause}" :src="list[nowMusic].mid[0].curl"></image>
+          <view @click="gotoPlay">   
+            <image class="cover anplay" :class="{anpause: ispause}" :src="list[nowMusic].curl"></image>
           </view>
         </view>
         <view class="right">
@@ -63,8 +63,8 @@
           </view>
           <view class="down">
             <view class="information">
-              <text class="m-name">{{ list[nowMusic].mid[0].title }}</text>
-              <text class="m-singer">{{ list[nowMusic].mid[0].singer }}</text>
+              <text class="m-name">{{ list[nowMusic].title }}</text>
+              <text class="m-singer">{{ list[nowMusic].singer }}</text>
             </view>
             <view class="operation">
               <view @click="pop">
@@ -74,7 +74,7 @@
               <view @click="next">
                 <image class="icon" src="/static/pic/index/next.png"></image>
               </view>
-              <view @click="toPlaying">
+              <view @click="gotoPlay">
                 <image class="icon" src="/static/pic/index/detail.png"></image>
               </view>
             </view>
@@ -98,17 +98,13 @@
         },
         list: [
           {
-            mid: [
-              {
-                title: '',
-                singer: '',
-                curl: ''
-              }
-            ]
+            title: '',
+            singer: '',
+            curl: ''
           }
         ],
-        ispause: this.$audio.paused,
-        itvid: 0,
+        ispause: true,
+        isautoplay: false,
         loading: 0,
         nowMusic: 0,
         myMusic: [
@@ -166,58 +162,68 @@
       }
     },
     methods:{
-      toPlayList(id){
+      gotoPlaylist(id){
         if(id == 3)
           uni.navigateTo({
             url: 'playlist'
           });
       },
-      toPlaying(){
+      gotoPlay(){
         uni.navigateTo({
           url: 'play'
         });
       },
+      // 获取用户信息
       initMe() {
         this.me.nickname = getApp().globalData.uname;
         this.me.uid = getApp().globalData.uid;
       },
+      // 初始化播放器信息
       initMusicList(){
         this.$database.get(
           'listen, musicList',
           {
             uid: getApp().globalData.uid
           },
+          'mid',
           (data)=>{
-            this.list = data;
-            this.$audio.src = this.list[this.nowMusic].mid[0].surl;
+            let list = [];
+            // 解包
+            for(let item of data){
+              list.push(item.mid[0]);
+            }
+            this.$audio.initList(list);
+            this.$audio.initMusic();
+            this.$audio.initPlaying(()=>{
+              this.loading = this.$audio.getLoading();
+            });
+            this.pullPlayer();
             console.log(data);
           }
         );
       },
+      // 同步播放器信息
+      pullPlayer(){
+        this.list = this.$audio.musiclist;
+        this.ispause = this.$audio.getPaused();
+        this.nowMusic = this.$audio.index;
+        this.loading = this.$audio.getLoading();
+      },
+      // play or pause
       pop(){
-        if(this.$audio.paused){         
+        if(this.ispause){                    
           this.$audio.play();
-          this.ispause = false;
-          this.itvid = setInterval(()=>{
-            this.loading = this.$audio.currentTime/this.$audio.duration*100;
-          },100);
+          this.ispause = this.$audio.getPaused();
         }
         else{
           this.$audio.pause();
-          this.ispause = true;
-          clearInterval(this.itvid);
+          this.ispause = this.$audio.getPaused();
         }
       },
+      // 下一曲
       next(){
-        if(!this.$audio.paused){
-          this.$audio.pause();
-          this.ispause = true;
-          clearInterval(this.itvid);
-        }
-        this.loading = 0;
-        this.nowMusic = (this.nowMusic+1)%this.list.length;
-        getApp().globalData.nowMusic = this.nowMusic;
-        this.$audio.src = this.list[this.nowMusic].mid[0].surl;
+        this.$audio.toNextMusic();
+        this.pullPlayer();
       }
     },
     mounted() {     
@@ -225,22 +231,7 @@
       this.initMusicList();
     },
     onShow() {
-      this.nowMusic = getApp().globalData.nowMusic;
-      this.loading = this.$audio.currentTime/this.$audio.duration*100;
-      this.ispause = this.$audio.paused;
-      if(this.$audio.paused){
-        this.ispause = true;
-        clearInterval(this.itvid);
-      }
-      else{
-        this.ispause = false;
-        this.itvid = setInterval(()=>{
-          this.loading = this.$audio.currentTime/this.$audio.duration*100;
-        },100);
-      }
-    },
-    onHide() {
-      clearInterval(this.itvid);
+      this.pullPlayer();
     }
   }
 </script>

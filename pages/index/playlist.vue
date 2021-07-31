@@ -22,12 +22,12 @@
       <view class="music-list">
         <view class="music-item" v-for="item,index in list">
           <view class="isplay">
-            <image v-if="isplay == index" src="/static/pic/playlist/pause.png" @click="pauset(index)"></image>
-            <image v-else src="/static/pic/playlist/play.png" @click="playt(index)"></image>
+            <image v-show="nowMusic==index?!ispause:false" src="/static/pic/playlist/pause.png" @click="pauset(index)"></image>
+            <image v-show="nowMusic==index?ispause:true" src="/static/pic/playlist/play.png" @click="playt(index)"></image>
           </view>
           <view class="infor">
-            <text class="title">{{ item.mid[0].title }}</text>
-            <text class="singer">{{ item.mid[0].singer }}</text>
+            <text class="title">{{ item.title }}</text>
+            <text class="singer">{{ item.singer }}</text>
           </view>
           <view class="length">
             <text>{{ item.length }}</text>
@@ -66,73 +66,37 @@
     data() {
       return {
         list: [],
-        musicList: [
-          {
-            title: '樱花樱花想见你',
-            singer: '满汉全席音乐团队',
-            length: 403
-          },
-          {
-            title: 'aLIEz',
-            singer: 'mizuki',
-            length: 213
-          },
-          {
-            title: '惊鸿一面',
-            singer: '许嵩、黄龄',
-            length: 316
-          }, 
-          {
-            title: '大鱼',
-            singer: '周深',
-            length: 404
-          },
-          {
-            title: '焚情',
-            singer: '张信哲',
-            length: 200
-          }
-        ],
-        isplay: -1
+        ispause: this.$audio.Audio.paused,
+        nowMusic: this.$audio.index,
       }
     },
     methods:{
       toBack() {
         uni.navigateBack();
       },
-      initList() {
-        this.$database.get(
-          'listen, musicList',
-          {
-            uid: getApp().globalData.uid
-          },
-          (data)=>{
-            this.list = data;
-            console.log(data);
-          }
-        );
+      // 同步播放器信息
+      pullPlayer(){
+        this.list = this.$audio.musiclist;
+        this.ispause = this.$audio.getPaused();
+        this.nowMusic = this.$audio.index;
       },
       playt(id){
         console.log(id);
-        this.isplay = id;
-        getApp().globalData.nowMusic = this.isplay;
-        this.$audio.src = this.list[this.isplay].mid[0].surl;
+        this.$audio.initMusic(id);
         this.$audio.play();
+        this.ispause = this.$audio.getPaused();
+        this.nowMusic = this.$audio.index;
       },
       pauset(id){
         console.log(id);
-        this.isplay = -1;
         this.$audio.pause();
+        this.ispause = this.$audio.getPaused();
+        this.nowMusic = this.$audio.index;
       }
     },
-    mounted() {
-      this.initList();
-      if(this.$audio.paused){
-        ;
-      }
-      else{
-        this.isplay = getApp().globalData.nowMusic;
-      }
+    mounted() {},
+    onShow() {
+      this.pullPlayer();
     }
   }
 </script>

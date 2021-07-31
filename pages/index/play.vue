@@ -1,7 +1,7 @@
 <template>
   <view class="main">
     <page-meta></page-meta>
-    <image class="bg1" :src="list[nowMusic].mid[0].curl"></image>
+    <image class="bg1" :src="list[nowMusic].curl"></image>
     <view class="bg2"></view>
     <view class="status_bar">
       <!-- 这里是状态栏 -->
@@ -9,9 +9,9 @@
     <view class="content">
       <view class="navigatebar">
         <image class="back" src="/static/pic/play/back.png" @click="toBack"></image>
-        <text class="m-name">{{ list[nowMusic].mid[0].title }}</text>
+        <text class="m-name">{{ list[nowMusic].title }}</text>
       </view>
-      <view class="m-singer"><text>{{ list[nowMusic].mid[0].singer }}</text></view>
+      <view class="m-singer"><text>{{ list[nowMusic].singer }}</text></view>
       <view class="m-effect">
         <view>
           <text>标准</text>
@@ -26,7 +26,7 @@
         </view>
       </view>
       <view class="m-cover">
-        <image class="anplay" :src="list[nowMusic].mid[0].curl" :class="{anpause: ispause}"></image>
+        <image class="anplay" :src="list[nowMusic].curl" :class="{anpause: ispause}"></image>
       </view>
       <view class="m-lyric">
         <view>
@@ -62,14 +62,14 @@
       <view class="operation">
         <image src="/static/pic/play/playway.png" class="a"></image>
         <view>
-          <view class="b" @click="lastMusic()">
+          <view class="b" @click="lastMusic">
             <image src="/static/pic/play/last.png"></image>
           </view>
           <view class="c" @click="pop">
             <image v-show="ispause" src="/static/pic/play/play.png"></image>
             <image v-show="!ispause" src="/static/pic/play/pause.png"></image>
           </view>
-          <view class="b" @click="nextMusic()">
+          <view class="b" @click="nextMusic">
             <image src="/static/pic/play/next.png"></image>
           </view>          
         </view>
@@ -94,10 +94,18 @@
             ]
           }
         ],
-        lysic: [],
+        lysic: [
+          {
+            time: 0,
+            text: ''
+          },
+          {
+            time: 0,
+            text: ''
+          },
+        ],
         nowMusic: 0,
         ispause: true,
-        itvid: 0,
         loading: 0,
         curL: '00:00',
         durL: '04:00',
@@ -112,23 +120,20 @@
       toBack() {
         uni.navigateBack();
       },
-      initList() {
-        this.$database.get(
-          'listen, musicList',
-          {
-            uid: getApp().globalData.uid
-          },
-          (data)=>{
-            this.list = data;
-            console.log(data);
-            this.initLysic();
+      initLocalPlayer() {
+        this.pullPlayer();
+        this.$audio.initPlaying(()=>{
+          this.loading = this.$audio.getLoading();
+          this.curL = this.$audio.getCurrentTime();
+          if(parseFloat(this.lysic[this.nowLine].time) <= this.$audio.Audio.currentTime){
+            this.nowLine+=1;
+            this.first = this.second;
+            this.second = this.lysic[this.nowLine].text;
+            // console.log(this.lysic[this.nowLine].text);
           }
-        );
-      },
-      initMusic(){
-        this.ispause = this.$audio.paused;
-        this.loading = this.$audio.currentTime/this.$audio.duration*100;
-        this.durL = this.getTime(this.$audio.duration);       
+        });
+        
+        this.initLysic();
       },
       initLysic(){
         this.nowLine = 1;
@@ -136,7 +141,7 @@
         this.second='';
         this.lysic=[];
         uni.request({
-          url: this.list[this.nowMusic].mid[0].lurl,
+          url: this.list[this.nowMusic].lurl,
           success:(res)=>{
             if(res.statusCode == 200){
               const rm = res.data;// 获取的是字符串类型的歌词
@@ -157,8 +162,7 @@
                     text: temp[i+1]
                   });
                   i+=1;
-                }
-     
+                }    
               }
               this.first = this.lysic[0].text;
               this.second = this.lysic[1].text;
@@ -172,74 +176,52 @@
           }
         })
       },
+      // 同步播放器信息
+      pullPlayer(){
+        this.list = this.$audio.musiclist;
+        this.ispause = this.$audio.getPaused();
+        this.nowMusic = this.$audio.index;
+        this.loading = this.$audio.getLoading();
+        this.curL = this.$audio.getCurrentTime(); 
+        
+      },
       playMusic(){        
-        this.ispause = false;
-        this.itvid = setInterval(()=>{
-          this.loading = this.$audio.currentTime/this.$audio.duration*100;
-          this.curL = this.getTime(this.$audio.currentTime);
-          if(parseFloat(this.lysic[this.nowLine].time) <= this.$audio.currentTime){
-            this.nowLine+=1;
-            this.first = this.second;
-            this.second = this.lysic[this.nowLine].text;
-            // console.log(this.lysic[this.nowLine].text);
-          }
-        },100);
+        this.$audio.play();
+        this.ispause = this.$audio.getPaused();
       },
       pauseMusic(){  
-        this.ispause = true;
-        clearInterval(this.itvid);
+        this.$audio.pause();
+        this.ispause = this.$audio.getPaused();
       },
       pop(){
-        if(this.$audio.paused){         
+        if(this.ispause){         
           this.playMusic();
-          this.$audio.play();
-          this.durL = this.getTime(this.$audio.duration);
         }
         else{
           this.pauseMusic();
-          this.$audio.pause();
         }
       },
       nextMusic(){
-        this.pauseMusic();
-        this.$audio.pause();
-        this.nowMusic = (this.nowMusic+1)%this.list.length;
-        getApp().globalData.nowMusic = this.nowMusic;
-        this.$audio.src = this.list[this.nowMusic].mid[0].surl;
-        this.initLysic();
-        this.loading = 0;     
-        this.curL = '00:00';
-        
+        this.$audio.toNextMusic();
+        console.log('tghisasfs',this.nowMusic);
+        this.pullPlayer();
+        console.log('tghisasfs',this.nowMusic);
+        this.initLysic();     
       },
       lastMusic(){
-        this.pauseMusic();
-        this.$audio.pause();
-        this.nowMusic = (this.nowMusic+this.list.length-1)%this.list.length;
-        getApp().globalData.nowMusic = this.nowMusic;
-        this.$audio.src = this.list[this.nowMusic].mid[0].surl;
-        this.initLysic();       
-        this.loading = 0;      
-        this.curL = '00:00';
-        
-      },
-      getTime(t){
-        const nt = t;
-        const sec = parseInt(nt%60)+'';
-        const min = parseInt(nt/60)+'';  
-        return Array(3-min.length).join('0')+min+':'+Array(3-sec.length).join('0')+sec;
-      }
+        this.$audio.toLastMusic();
+        this.pullPlayer();
+        this.initLysic();  
+      }     
     },
-    mounted() {
-      this.initList();
-      this.nowMusic = getApp().globalData.nowMusic;   
-      this.initMusic();
-      
-      if(this.ispause){
-        this.pauseMusic();
-      }
-      else{
-        this.playMusic();
-      }
+    mounted() { 
+      this.initLocalPlayer();
+      this.$audio.initCanPlaying(()=>{
+        this.durL = this.$audio.getDuration();
+      });
+    },
+    onShow() {
+      this.pullPlayer();
     }
   }
 </script>

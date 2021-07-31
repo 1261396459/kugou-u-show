@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import App from './App'
-import {toDatabase} from "api/mytool.js";
+import {toDatabase,Player} from "api/mytool.js"
 
-const MusicPlayer = uni.createInnerAudioContext()
-
+// const MusicPlayer = uni.createInnerAudioContext()
+const MusicPlayer = new Player()
 
 Vue.config.productionTip = false
 // 开启调试模式

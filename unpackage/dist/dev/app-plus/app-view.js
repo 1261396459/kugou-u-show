@@ -2550,29 +2550,44 @@ var render = function() {
                       attrs: { _i: "16-" + $30 }
                     },
                     [
-                      _vm._$g("17-" + $30, "i")
-                        ? _c("v-uni-image", {
-                            attrs: {
-                              src: "/static/pic/playlist/pause.png",
-                              _i: "17-" + $30
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.$handleViewEvent($event)
-                              }
-                            }
-                          })
-                        : _c("v-uni-image", {
-                            attrs: {
-                              src: "/static/pic/playlist/play.png",
-                              _i: "18-" + $30
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.$handleViewEvent($event)
-                              }
-                            }
-                          })
+                      _c("v-uni-image", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm._$g("17-" + $30, "v-show"),
+                            expression: "_$g((\"17-\"+$30),'v-show')"
+                          }
+                        ],
+                        attrs: {
+                          src: "/static/pic/playlist/pause.png",
+                          _i: "17-" + $30
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.$handleViewEvent($event)
+                          }
+                        }
+                      }),
+                      _c("v-uni-image", {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm._$g("18-" + $30, "v-show"),
+                            expression: "_$g((\"18-\"+$30),'v-show')"
+                          }
+                        ],
+                        attrs: {
+                          src: "/static/pic/playlist/play.png",
+                          _i: "18-" + $30
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.$handleViewEvent($event)
+                          }
+                        }
+                      })
                     ],
                     1
                   ),

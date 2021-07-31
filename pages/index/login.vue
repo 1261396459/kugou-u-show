@@ -65,6 +65,7 @@
             username: acc,
             password: pass
           },
+          '_id,username',
           function(data){
             if(data.length == 0){
               uni.showToast({
